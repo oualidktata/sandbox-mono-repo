@@ -1,0 +1,56 @@
+{
+  "npmScope": "pwc",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "projects": {
+    "shared-layout": {
+      "tags": ["scope:layout", "type:feature"]
+    },
+    "shared-material": {
+      "tags": []
+    },
+    "user-console": {
+      "tags": []
+    },
+    "user-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["user-console"]
+    },
+    "users-details": {
+      "tags": ["scope:users", "type:feature"]
+    },
+    "users-home": {
+      "tags": ["scope:home", "type:feature"]
+    },
+    "users-list": {
+      "tags": ["scope:users", "type:feature"]
+    },
+    "users-shell": {
+      "tags": ["shell"]
+    }
+  }
+}
