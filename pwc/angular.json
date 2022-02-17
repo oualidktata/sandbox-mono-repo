@@ -1,31 +1,6 @@
 {
   "version": 1,
   "projects": {
-    "settings-settings": {
-      "projectType": "library",
-      "root": "libs/settings/settings",
-      "sourceRoot": "libs/settings/settings/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/settings/settings"],
-          "options": {
-            "jestConfig": "libs/settings/settings/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/settings/settings/src/**/*.ts",
-              "libs/settings/settings/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "shared-layout": {
       "projectType": "library",
       "root": "libs/shared/layout",
@@ -124,12 +99,43 @@
               ],
               "outputHashing": "all"
             },
+            "sme": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/user-console/src/environments/environment.ts",
+                  "with": "apps/user-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "none",
+              "optimization": true,
+              "sourceMap": true,
+              "namedChunks": true,
+              "buildOptimizer": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
+              "sourceMap": {
+                "scripts": true,
+                "styles": true,
+                "hidden": true,
+                "vendor": true
+              },
               "namedChunks": true
             }
           },

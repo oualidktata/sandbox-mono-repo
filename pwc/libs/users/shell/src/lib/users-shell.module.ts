@@ -6,28 +6,57 @@ import { HomeComponent, UsersHomeModule } from '@pwc/users/home';
 import { SharedMaterialModule } from '@pwc/shared/material';
 import { DetailsComponent, UsersDetailsModule } from '@pwc/users/details';
 import { ListComponent, UsersListModule } from '@pwc/users/list';
+import { PageNotFoundComponent, SharedLayoutModule } from '@pwc/shared/layout';
 
+const routeConfig = { enableTracing: true };
 const routes: Routes = [
-  { path: 'home', pathMatch: 'full', component: HomeComponent },
   {
-    path: 'list',
-    component: ListComponent,
-    //outlet: 'list',
+    path: '',
+    component: ShellComponent,
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'home' },
+      {
+        path: 'home',
+        component: HomeComponent,
+        //outlet: 'list',
+      },
+      {
+        path: 'list',
+        component: ListComponent,
+        //outlet: 'list',
+      },
+    ],
   },
+
   {
-    path: 'details',
-    component: DetailsComponent,
-    outlet: 'details',
+    path: '**',
+    component: PageNotFoundComponent,
   },
-  { path: '', pathMatch: 'full', redirectTo: '/users/home' }, //TODO:not convinced that's the best way to do it, I would prefer not knowing about users given in app
+
+  //   loadChildren: () =>
+  //     import('@pwc/users/shell').then((m) => m.UsersShellModule),
+  //   // children: [{ path: 'home', component: HomeComponent }],
+  // },
+  // { path: '', redirectTo: 'users/home', pathMatch: 'full' },
 ];
+
+//   {
+//     path: 'details',
+//     component: DetailsComponent,
+//     outlet: 'details',
+//   },
+// const routes: Routes = [
+
+//   { path: '', pathMatch: 'full', redirectTo: '/users/home' }, //TODO:not convinced that's the best way to do it, I would prefer not knowing about users given in app
+// ];
 @NgModule({
   imports: [
     CommonModule,
     UsersHomeModule,
     UsersDetailsModule,
     UsersListModule,
-    RouterModule.forChild(routes),
+    SharedLayoutModule,
+    RouterModule.forRoot(routes, routeConfig),
     SharedMaterialModule,
   ],
   exports: [RouterModule],

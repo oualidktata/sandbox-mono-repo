@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@pwc/settings/settings": ["libs/settings/settings/src/index.ts"],
       "@pwc/shared/layout": ["libs/shared/layout/src/index.ts"],
       "@pwc/shared/material": ["libs/shared/material/src/index.ts"],
       "@pwc/users/details": ["libs/users/details/src/index.ts"],

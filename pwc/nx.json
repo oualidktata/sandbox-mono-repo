@@ -27,9 +27,6 @@
     ]
   },
   "projects": {
-    "settings-settings": {
-      "tags": ["scope:settings", "type:feature"]
-    },
     "shared-layout": {
       "tags": ["scope:layout", "type:feature"]
     },
