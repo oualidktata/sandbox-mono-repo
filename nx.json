@@ -27,10 +27,16 @@
     ]
   },
   "projects": {
+    "settings": {
+      "tags": ["scope:settings", "type:feature"]
+    },
     "shared-layout": {
       "tags": ["scope:layout", "type:feature"]
     },
     "shared-material": {
+      "tags": []
+    },
+    "shared-ui": {
       "tags": []
     },
     "user-console": {

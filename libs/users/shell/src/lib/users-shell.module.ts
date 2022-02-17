@@ -4,11 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { ShellComponent } from './shell.component';
 import { HomeComponent, UsersHomeModule } from '@pwc/users/home';
 import { SharedMaterialModule } from '@pwc/shared/material';
-import { DetailsComponent, UsersDetailsModule } from '@pwc/users/details';
+import { UsersDetailsModule } from '@pwc/users/details';
 import { ListComponent, UsersListModule } from '@pwc/users/list';
 import { PageNotFoundComponent, SharedLayoutModule } from '@pwc/shared/layout';
 
-const routeConfig = { enableTracing: true };
+const routeConfig = { enableTracing: false };
 const routes: Routes = [
   {
     path: '',

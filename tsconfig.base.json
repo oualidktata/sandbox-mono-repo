@@ -15,8 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@pwc/settings": ["libs/settings/src/index.ts"],
       "@pwc/shared/layout": ["libs/shared/layout/src/index.ts"],
       "@pwc/shared/material": ["libs/shared/material/src/index.ts"],
+      "@pwc/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@pwc/users/details": ["libs/users/details/src/index.ts"],
       "@pwc/users/home": ["libs/users/home/src/index.ts"],
       "@pwc/users/list": ["libs/users/list/src/index.ts"],
