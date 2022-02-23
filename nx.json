@@ -27,8 +27,14 @@
     ]
   },
   "projects": {
-    "settings": {
+    "settings-manage-settings": {
       "tags": ["scope:settings", "type:feature"]
+    },
+    "settings-shell": {
+      "tags": []
+    },
+    "settings-shell-settings": {
+      "tags": ["scope:settings", "type:shell"]
     },
     "shared-layout": {
       "tags": ["scope:layout", "type:feature"]
@@ -46,14 +52,23 @@
       "tags": [],
       "implicitDependencies": ["user-console"]
     },
+    "users-dashboard": {
+      "tags": ["scope:dashboard", "type:feature"]
+    },
     "users-details": {
       "tags": ["scope:users", "type:feature"]
     },
-    "users-home": {
-      "tags": ["scope:home", "type:feature"]
+    "users-domain": {
+      "tags": ["scope:users", "type:domain"]
+    },
+    "users-edit-user": {
+      "tags": ["scope:users", "type:feature"]
     },
     "users-list": {
       "tags": ["scope:users", "type:feature"]
+    },
+    "users-manage-users": {
+      "tags": ["scope:users", "feature:feature"]
     },
     "users-shell": {
       "tags": ["shell"]

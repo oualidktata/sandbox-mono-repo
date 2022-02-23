@@ -2,30 +2,32 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ShellComponent } from './shell.component';
-import { HomeComponent, UsersHomeModule } from '@pwc/users/home';
+import { UsersDashboardModule } from '@pwc/users/dashboard';
 import { SharedMaterialModule } from '@pwc/shared/material';
-import { UsersDetailsModule } from '@pwc/users/details';
-import { ListComponent, UsersListModule } from '@pwc/users/list';
 import { PageNotFoundComponent, SharedLayoutModule } from '@pwc/shared/layout';
-
-const routeConfig = { enableTracing: false };
+import { ManageUsersModule } from '@pwc/users/manage-users';
 const routes: Routes = [
   {
-    path: '',
+    path: 'users',
     component: ShellComponent,
-    children: [
-      { path: '', pathMatch: 'full', redirectTo: 'home' },
-      {
-        path: 'home',
-        component: HomeComponent,
-        //outlet: 'list',
-      },
-      {
-        path: 'list',
-        component: ListComponent,
-        //outlet: 'list',
-      },
-    ],
+    pathMatch: 'full',
+    // loadChildren: () =>
+    //   import('@pwc/users/dashboard').then((m) => m.UsersDashboardModule),
+    // children: [
+    //   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+    //   {
+    //     path: 'dashboard',
+    //     loadChildren: () =>
+    //       import('@pwc/users/dashboard').then((m) => m.UsersDashboardModule),
+    //     //outlet: 'list',
+    //   },
+    //   {
+    //     path: 'manage-users',
+    //     loadChildren: () =>
+    //       import('@pwc/users/manage-users').then((m) => m.ManageUsersModule),
+    //     //outlet: 'list',
+    //   },
+    // ],
   },
 
   {
@@ -35,9 +37,9 @@ const routes: Routes = [
 
   //   loadChildren: () =>
   //     import('@pwc/users/shell').then((m) => m.UsersShellModule),
-  //   // children: [{ path: 'home', component: HomeComponent }],
+  //   // children: [{ path: 'dashboard', component: dashboardComponent }],
   // },
-  // { path: '', redirectTo: 'users/home', pathMatch: 'full' },
+  // { path: '', redirectTo: 'users/dashboard', pathMatch: 'full' },
 ];
 
 //   {
@@ -47,16 +49,16 @@ const routes: Routes = [
 //   },
 // const routes: Routes = [
 
-//   { path: '', pathMatch: 'full', redirectTo: '/users/home' }, //TODO:not convinced that's the best way to do it, I would prefer not knowing about users given in app
+//   { path: '', pathMatch: 'full', redirectTo: '/users/dashboard' }, //TODO:not convinced that's the best way to do it, I would prefer not knowing about users given in app
 // ];
 @NgModule({
   imports: [
     CommonModule,
-    UsersHomeModule,
-    UsersDetailsModule,
-    UsersListModule,
+    UsersDashboardModule,
     SharedLayoutModule,
-    RouterModule.forRoot(routes, routeConfig),
+    UsersDashboardModule,
+    ManageUsersModule,
+    RouterModule.forChild(routes),
     SharedMaterialModule,
   ],
   exports: [RouterModule],

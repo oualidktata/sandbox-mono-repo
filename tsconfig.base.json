@@ -15,13 +15,22 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@pwc/settings": ["libs/settings/src/index.ts"],
+      "@pwc/settings/manage-settings": [
+        "libs/settings/manage-settings/src/index.ts"
+      ],
+      "@pwc/settings/shell": ["libs/settings/shell/src/index.ts"],
+      "@pwc/settings/shell-settings": [
+        "libs/settings/shell-settings/src/index.ts"
+      ],
       "@pwc/shared/layout": ["libs/shared/layout/src/index.ts"],
       "@pwc/shared/material": ["libs/shared/material/src/index.ts"],
       "@pwc/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@pwc/users/dashboard": ["libs/users/dashboard/src/index.ts"],
       "@pwc/users/details": ["libs/users/details/src/index.ts"],
-      "@pwc/users/home": ["libs/users/home/src/index.ts"],
+      "@pwc/users/domain": ["libs/users/domain/src/index.ts"],
+      "@pwc/users/edit-user": ["libs/users/edit-user/src/index.ts"],
       "@pwc/users/list": ["libs/users/list/src/index.ts"],
+      "@pwc/users/manage-users": ["libs/users/manage-users/src/index.ts"],
       "@pwc/users/shell": ["libs/users/shell/src/index.ts"]
     }
   },

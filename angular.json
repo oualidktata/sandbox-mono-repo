@@ -1,17 +1,17 @@
 {
   "version": 1,
   "projects": {
-    "settings": {
+    "settings-manage-settings": {
       "projectType": "library",
-      "root": "libs/settings",
-      "sourceRoot": "libs/settings/src",
+      "root": "libs/settings/manage-settings",
+      "sourceRoot": "libs/settings/manage-settings/src",
       "prefix": "pwc",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/settings"],
+          "outputs": ["coverage/libs/settings/manage-settings"],
           "options": {
-            "jestConfig": "libs/settings/jest.config.js",
+            "jestConfig": "libs/settings/manage-settings/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -19,8 +19,58 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/settings/src/**/*.ts",
-              "libs/settings/src/**/*.html"
+              "libs/settings/manage-settings/src/**/*.ts",
+              "libs/settings/manage-settings/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "settings-shell": {
+      "projectType": "library",
+      "root": "libs/settings/shell",
+      "sourceRoot": "libs/settings/shell/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/settings/shell"],
+          "options": {
+            "jestConfig": "libs/settings/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/settings/shell/src/**/*.ts",
+              "libs/settings/shell/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "settings-shell-settings": {
+      "projectType": "library",
+      "root": "libs/settings/shell-settings",
+      "sourceRoot": "libs/settings/shell-settings/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/settings/shell-settings"],
+          "options": {
+            "jestConfig": "libs/settings/shell-settings/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/settings/shell-settings/src/**/*.ts",
+              "libs/settings/shell-settings/src/**/*.html"
             ]
           }
         }
@@ -255,6 +305,31 @@
         }
       }
     },
+    "users-dashboard": {
+      "projectType": "library",
+      "root": "libs/users/dashboard",
+      "sourceRoot": "libs/users/dashboard/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users/dashboard"],
+          "options": {
+            "jestConfig": "libs/users/dashboard/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/dashboard/src/**/*.ts",
+              "libs/users/dashboard/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "users-details": {
       "projectType": "library",
       "root": "libs/users/details",
@@ -280,17 +355,17 @@
         }
       }
     },
-    "users-home": {
+    "users-domain": {
       "projectType": "library",
-      "root": "libs/users/home",
-      "sourceRoot": "libs/users/home/src",
+      "root": "libs/users/domain",
+      "sourceRoot": "libs/users/domain/src",
       "prefix": "pwc",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/users/home"],
+          "outputs": ["coverage/libs/users/domain"],
           "options": {
-            "jestConfig": "libs/users/home/jest.config.js",
+            "jestConfig": "libs/users/domain/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -298,8 +373,33 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/users/home/src/**/*.ts",
-              "libs/users/home/src/**/*.html"
+              "libs/users/domain/src/**/*.ts",
+              "libs/users/domain/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "users-edit-user": {
+      "projectType": "library",
+      "root": "libs/users/edit-user",
+      "sourceRoot": "libs/users/edit-user/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users/edit-user"],
+          "options": {
+            "jestConfig": "libs/users/edit-user/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/edit-user/src/**/*.ts",
+              "libs/users/edit-user/src/**/*.html"
             ]
           }
         }
@@ -325,6 +425,31 @@
             "lintFilePatterns": [
               "libs/users/list/src/**/*.ts",
               "libs/users/list/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "users-manage-users": {
+      "projectType": "library",
+      "root": "libs/users/manage-users",
+      "sourceRoot": "libs/users/manage-users/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users/manage-users"],
+          "options": {
+            "jestConfig": "libs/users/manage-users/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/manage-users/src/**/*.ts",
+              "libs/users/manage-users/src/**/*.html"
             ]
           }
         }
