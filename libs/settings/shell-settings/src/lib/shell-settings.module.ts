@@ -8,13 +8,19 @@ import { SharedUiModule } from '@pwc/shared/ui';
 import { SharedLayoutModule } from '@pwc/shared/layout';
 
 const routes: Routes = [
+  {path:'',
+  component:ShellSettingsComponent,
+children:[
   {
-    path: 'home',
+    path: '',
+    pathMatch:'full',
     loadChildren: () =>
       import('@pwc/settings/manage-settings').then(
         (m) => m.ManageSettingsModule
       ),
   },
+]}
+
 ];
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes), ManageSettingsModule,SharedMaterialModule,SharedUiModule,SharedLayoutModule],

@@ -1,10 +1,9 @@
 <mat-card>
-
-  <button mat-button [matMenuTriggerFor]="usersMenu">Manage Users</button>
+  <!-- <button mat-button [matMenuTriggerFor]="usersMenu">Manage Users</button>
   <mat-menu #usersMenu="matMenu" yPosition="below">
     <button mat-menu-item color='accent' [routerLink]="['dashboard']" routerLinkActive="active" >Dashboard</button>
     <button mat-menu-item color='warn' [routerLink]="['list']" routerLinkActive="active" >Manage Users</button>
-  </mat-menu>
+  </mat-menu> -->
   <!-- <button mat-menu-item color='accent' [routerLink]="[{outlets:{details:['details']}}]" routerLinkActive="active" >Show Details</button>
     <button mat-menu-item color='warn' [routerLink]="[{outlets:{list:['list']}}]" routerLinkActive="active" >Show List</button> -->
 <!-- router-outlet to display main content of the user management bounded Context -->
@@ -13,4 +12,6 @@
   <mat-tab label="users"><pwc-manage-users></pwc-manage-users></mat-tab>
   <mat-tab label="roles">no component yet!</mat-tab>
 </mat-tab-group>
-  </mat-card>
+<!-- <router-outlet></router-outlet> -->
+</mat-card>
+

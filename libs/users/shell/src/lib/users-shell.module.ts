@@ -11,8 +11,18 @@ const routes: Routes = [
     path: 'users',
     component: ShellComponent,
     pathMatch: 'full',
-    // loadChildren: () =>
-    //   import('@pwc/users/dashboard').then((m) => m.UsersDashboardModule),
+    // children: [
+    //   {
+    //     path: 'dashboard',
+    //     loadChildren: () =>
+    //       import('@pwc/users/dashboard').then((m) => m.UsersDashboardModule),
+    //   },{
+    //     path: 'manage',
+    //     loadChildren: () =>
+    //       import('@pwc/users/manage-users').then((m) => m.ManageUsersModule),
+    //   },
+    // ],
+
     // children: [
     //   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
     //   {
@@ -30,10 +40,10 @@ const routes: Routes = [
     // ],
   },
 
-  {
-    path: '**',
-    component: PageNotFoundComponent,
-  },
+  // {
+  //   path: '**',
+  //   component: PageNotFoundComponent,
+  // },
 
   //   loadChildren: () =>
   //     import('@pwc/users/shell').then((m) => m.UsersShellModule),
