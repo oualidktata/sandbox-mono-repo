@@ -26,31 +26,6 @@
         }
       }
     },
-    "settings-shell": {
-      "projectType": "library",
-      "root": "libs/settings/shell",
-      "sourceRoot": "libs/settings/shell/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/settings/shell"],
-          "options": {
-            "jestConfig": "libs/settings/shell/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/settings/shell/src/**/*.ts",
-              "libs/settings/shell/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "settings-shell-settings": {
       "projectType": "library",
       "root": "libs/settings/shell-settings",

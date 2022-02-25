@@ -30,9 +30,6 @@
     "settings-manage-settings": {
       "tags": ["scope:settings", "type:feature"]
     },
-    "settings-shell": {
-      "tags": []
-    },
     "settings-shell-settings": {
       "tags": ["scope:settings", "type:shell"]
     },
@@ -40,13 +37,13 @@
       "tags": ["scope:layout", "type:feature"]
     },
     "shared-material": {
-      "tags": []
+      "tags": ["scope:shared", "type:ui"]
     },
     "shared-ui": {
-      "tags": []
+      "tags": ["scope:shared", "type:ui"]
     },
     "user-console": {
-      "tags": []
+      "tags": ["scope:user", "type:app"]
     },
     "user-console-e2e": {
       "tags": [],
@@ -71,7 +68,7 @@
       "tags": ["scope:users", "feature:feature"]
     },
     "users-shell": {
-      "tags": ["shell"]
+      "tags": ["scope:users", "feature:shell"]
     }
   }
 }

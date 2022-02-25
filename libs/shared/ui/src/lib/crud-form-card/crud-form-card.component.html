@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-progress-bar class="loader" mode ="buffer" *ngIf="isLoading"></mat-progress-bar>
+  <mat-card-header>
+  <h1>{{vm.title}}</h1>
+  <button mat-stroked-button (click)="displayContent()">{{isReadMode?'Edit':'Close'}}</button>
+
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content [class.loading]="isLoading">
+    <ng-content></ng-content>
+  </mat-card-content>
+  <mat-card-footer><button *ngIf="canSave" mat-stroked-button (click)="save()">{{isReadMode?'Save':'Cancel'}}</button></mat-card-footer>
+</mat-card>
+
