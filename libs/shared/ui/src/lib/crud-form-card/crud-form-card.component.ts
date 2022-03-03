@@ -1,3 +1,4 @@
+import { formatCurrency } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -18,11 +19,11 @@ export class CrudFormCardComponent implements OnInit {
   @Input() settings: CrudFormCardSettings = {};
   @ContentChild(EDITFORM_TOKEN as never, { static: false })
   editForm!: EditForm;
-
+  @Input() readyToSave = false;
   vm: CrudFormCardSettings = { title: 'crud form title' };
   isReadMode = true;
   isLoading = false;
-  canSave = false;
+  //canSave = false;
   ngOnInit(): void {
     this.isLoading = true;
     //this.editForm.load();
@@ -45,4 +46,8 @@ export class CrudFormCardComponent implements OnInit {
     //raise save event
     console.log('save called!');
   }
+  canSave = () => {
+    console.log(`canSave=${!this.isReadMode}`);
+    return !this.isReadMode;
+  };
 }

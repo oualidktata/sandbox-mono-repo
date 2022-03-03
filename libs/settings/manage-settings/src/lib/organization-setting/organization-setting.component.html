@@ -2,9 +2,10 @@
 
 <mat-grid-list cols="2">
   <mat-grid-tile colspan="1">
-    <pwc-crud-form-card [settings]="settings">
-      <div class="container" >
+    <pwc-crud-form-card [settings]="settings" [readyToSave]=true>
+      <div editViewContent class="container" >
         <form [formGroup]="form" (ngSubmit)="save()">
+<pwc-quantity-selector [inferiorEdge]="0" [superiorEdge]="100" [increment]="5"></pwc-quantity-selector>
           <mat-form-field appearance="standard">
             <mat-label>First Name</mat-label>
             <input matInput maxlength="20" inputmode="tel" placeholder="Type your first name" formControlName="firstName"
@@ -19,7 +20,9 @@
           </mat-form-field>
         </form>
       </div>
+      <div readViewContent>Read Only Content</div>
     </pwc-crud-form-card>
+
   </mat-grid-tile>
 
 </mat-grid-list>

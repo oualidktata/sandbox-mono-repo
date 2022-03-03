@@ -3,12 +3,19 @@
   <mat-card-header>
   <h1>{{vm.title}}</h1>
   <button mat-stroked-button (click)="displayContent()">{{isReadMode?'Edit':'Close'}}</button>
-
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content [class.loading]="isLoading">
-    <ng-content></ng-content>
+    <ng-content *ngIf="isReadMode" select="[readViewContent]"></ng-content>
+    <ng-content *ngIf="!isReadMode" select="[editViewContent]"></ng-content>
+
   </mat-card-content>
-  <mat-card-footer><button *ngIf="canSave" mat-stroked-button (click)="save()">{{isReadMode?'Save':'Cancel'}}</button></mat-card-footer>
+  <mat-card-footer>
+    <div *ngIf="!isReadMode">
+      <button mat-stroked-button [disabled]="!canSave()" (click)="save()">Save</button>
+      <button mat-stroked-button [disabled]="canSave()"(click)="cancel()">Cancel</button>
+    </div>
+
+  </mat-card-footer>
 </mat-card>
 
