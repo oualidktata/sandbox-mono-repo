@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedMaterialModule } from '@pwc/shared/material';
 import { TotalsTileComponent } from './totals-tile/totals-tile.component';
-import { SharedUiModule } from '@pwc/shared/ui';
+import { DashboardTileModule } from '@pwc/shared/ui';
 import { ForcastTileComponent } from './forcast-tile/forcast-tile.component';
 import { UsersDetailsModule } from '@pwc/users/details';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,7 +19,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedMaterialModule,
-    SharedUiModule,
+    DashboardTileModule,
     UsersDetailsModule,
     RouterModule.forChild(routes),
   ],

@@ -4,26 +4,30 @@ import { RouterModule, Routes } from '@angular/router';
 import { ShellSettingsComponent } from './shell-settings/shell-settings.component';
 import { ManageSettingsModule } from '@pwc/settings/manage-settings';
 import { SharedMaterialModule } from '@pwc/shared/material';
-import { SharedUiModule } from '@pwc/shared/ui';
-import { SharedLayoutModule } from '@pwc/shared/layout';
 
 const routes: Routes = [
-  {path:'',
-  component:ShellSettingsComponent,
-children:[
   {
     path: '',
-    pathMatch:'full',
-    loadChildren: () =>
-      import('@pwc/settings/manage-settings').then(
-        (m) => m.ManageSettingsModule
-      ),
+    component: ShellSettingsComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        loadChildren: () =>
+          import('@pwc/settings/manage-settings').then(
+            (m) => m.ManageSettingsModule
+          ),
+      },
+    ],
   },
-]}
-
 ];
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), ManageSettingsModule,SharedMaterialModule,SharedUiModule,SharedLayoutModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    ManageSettingsModule,
+    SharedMaterialModule,
+  ],
   declarations: [ShellSettingsComponent],
   exports: [ShellSettingsComponent],
 })

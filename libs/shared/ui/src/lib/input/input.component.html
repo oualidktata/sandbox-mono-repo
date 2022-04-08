@@ -1,0 +1,6 @@
+<div class="form-row">
+  <input type="text" class="form-element" [value]="value"
+  (input)="changed($event.target)"
+  (blur)="touched()"
+  disabled="isDisabled">
+</div>

@@ -1,6 +1,20 @@
 {
   "version": 1,
   "projects": {
+    "eslint-rules": {
+      "root": "tools/eslint-rules",
+      "sourceRoot": "tools/eslint-rules",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/tools/eslint-rules"],
+          "options": {
+            "jestConfig": "tools/eslint-rules/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "settings-manage-settings": {
       "projectType": "library",
       "root": "libs/settings/manage-settings",
@@ -262,16 +276,17 @@
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": {
-                "scripts": true,
-                "styles": true,
-                "hidden": true,
-                "vendor": true
-              },
+              "sourceMap":true,
+              // {
+              //   "scripts": true,
+              //   "styles": true,
+              //   "hidden": true,
+              //   "vendor": true
+              // },
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -280,7 +295,8 @@
               "browserTarget": "user-console:build:production"
             },
             "development": {
-              "browserTarget": "user-console:build:development"
+              "browserTarget": "user-console:build:development",
+              "sourceMap":true
             }
           },
           "defaultConfiguration": "development"

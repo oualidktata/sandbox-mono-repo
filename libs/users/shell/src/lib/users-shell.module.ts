@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ShellComponent } from './shell.component';
 import { UsersDashboardModule } from '@pwc/users/dashboard';
 import { SharedMaterialModule } from '@pwc/shared/material';
-import { PageNotFoundComponent, SharedLayoutModule } from '@pwc/shared/layout';
 import { ManageUsersModule } from '@pwc/users/manage-users';
 const routes: Routes = [
   {
@@ -65,7 +64,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     UsersDashboardModule,
-    SharedLayoutModule,
     UsersDashboardModule,
     ManageUsersModule,
     RouterModule.forChild(routes),

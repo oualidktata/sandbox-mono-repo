@@ -1,9 +1,9 @@
-<div class="container">
-  <mat-icon (click)="onRemove()" color="primary">minus_box</mat-icon>
-  <div class="quatity">{{quantity}}</div>
-  <mat-icon (click)="onAdd()" color="primary">add_box</mat-icon>
+<div class="container" >
+  <mat-icon (click)="onRemove()" color="primary">remove</mat-icon>
+  <div class="quantity">{{settings.quantity}}</div>
+  <mat-icon (click)="onAdd()" color="primary">add</mat-icon>
 </div>
 <div class="container">
-  <span *ngIf="hasSuperiorEdgeError" class="warn">exceeded superior edge {{this.superiorEdge}}</span>
-  <span *ngIf="hasInferiorEdgeError" class="warn">exceeded inferior edge {{this.inferiorEdge}}</span>
+  <span *ngIf="hasSuperiorEdgeError" class="warn">exceeded superior edge {{this.settings.superiorEdge}}</span>
+  <span *ngIf="hasInferiorEdgeError" class="warn">exceeded inferior edge {{this.settings.inferiorEdge}}</span>
 </div>

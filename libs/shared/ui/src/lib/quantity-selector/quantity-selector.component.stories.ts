@@ -1,9 +1,16 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import {
+  moduleMetadata,
+  Story,
+  Meta,
+  componentWrapperDecorator,
+} from '@storybook/angular';
 import { QuantitySelectorComponent } from './quantity-selector.component';
 import { action } from '@storybook/addon-actions';
 import { SharedMaterialModule } from '@pwc/shared/material';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { QuantitySelectorSettings } from './models/quantity-selector.model';
+import { Primary } from '../crud-form-card/crud-form-card.component.stories';
 export default {
   title: 'QuantitySelectorComponent',
   component: QuantitySelectorComponent,
@@ -12,12 +19,27 @@ export default {
       imports: [SharedMaterialModule, CommonModule, BrowserAnimationsModule],
       declarations: [QuantitySelectorComponent],
     }),
+    // With template
+    componentWrapperDecorator(
+      (story) => `<div style="margin: 3em">${story}</div>`
+    ),
+    // With component which contains ng-content
+    //componentWrapperDecorator(SuperiorEdgeReached),
   ],
 
   argTypes: { onAdd: { action: 'added' }, onRemove: { action: 'removed' } },
+  parameters: {
+    backgrounds: {
+      values: [
+        { name: 'red', value: '#f00' },
+        { name: 'green', value: '#0f0' },
+        { name: 'blue', value: '#00f' },
+      ],
+    },
+  },
 } as Meta<QuantitySelectorComponent>;
 
-export const actionsData = {
+const actionsData = {
   onAdd: action('onAdd'),
   onRemove: action('onRemove'),
 };
@@ -35,24 +57,28 @@ const Template: Story<QuantitySelectorComponent> = (
 
 export const Default = Template.bind({});
 Default.args = {
-  increment: 1,
-  quantity: 50,
-  inferiorEdge: 0,
-  superiorEdge: 100,
-  hasInferiorEdgeError: false,
-  hasSuperiorEdgeError: false,
+  settings: {
+    increment: 1,
+    quantity: 50,
+    inferiorEdge: 0,
+    superiorEdge: 100,
+  },
 };
 
 export const SuperiorEdgeReached = Template.bind({});
 SuperiorEdgeReached.args = {
-  ...Default.args,
-  quantity: 101,
+  settings: {
+    ...(Default.args.settings as QuantitySelectorSettings),
+    quantity: 101,
+  },
   hasSuperiorEdgeError: true,
 };
 
 export const InferiorEdgeReached = Template.bind({});
 InferiorEdgeReached.args = {
-  ...Default.args,
-  quantity: -1,
+  settings: {
+    ...(Default.args.settings as QuantitySelectorSettings),
+    quantity: -1,
+  },
   hasInferiorEdgeError: true,
 };

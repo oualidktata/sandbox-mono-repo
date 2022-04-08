@@ -9,7 +9,7 @@ import { User } from '@pwc/users/domain';
   styleUrls: ['./update-user.component.scss'],
 })
 export class UpdateUserComponent implements OnDestroy {
-  @Output() updateUser: EventEmitter<User> = new EventEmitter();
+  @Output() updateUser: EventEmitter<Partial<User>> = new EventEmitter();
   firstName = '';
   lastName = '';
   active = false;
@@ -34,7 +34,7 @@ export class UpdateUserComponent implements OnDestroy {
       return;
     }
 
-    const newUser: User = {
+    const newUser: Partial<User> = {
       firstName: this.firstName,
       lastName: this.lastName,
       active: this.active,

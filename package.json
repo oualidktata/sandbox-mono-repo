@@ -9,7 +9,8 @@
     "build": "nx build -c=development",
     "build prod": "nx build -c=production",
     "sme": "nx build -c=sme && cd dist/apps/user-console && source-map-explorer *.js",
-    "test": "nx test"
+    "test": "nx test",
+    "test-storybook": "test-storybook"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +25,7 @@
     "@angular/platform-browser-dynamic": "^12.2.0",
     "@angular/router": "^12.2.0",
     "@nrwl/angular": "12.10.1",
+    "@typescript-eslint/experimental-utils": "^5.15.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
@@ -45,9 +47,13 @@
     "@nrwl/tao": "12.10.1",
     "@nrwl/workspace": "12.10.1",
     "@storybook/addon-essentials": "~6.3.0",
+    "@storybook/addon-interactions": "^6.4.19",
     "@storybook/angular": "~6.3.0",
     "@storybook/builder-webpack5": "~6.3.0",
+    "@storybook/jest": "^0.0.9",
     "@storybook/manager-webpack5": "~6.3.0",
+    "@storybook/test-runner": "^0.0.4",
+    "@storybook/testing-library": "^0.0.9",
     "@types/jest": "27.0.2",
     "@types/node": "14.14.33",
     "@typescript-eslint/eslint-plugin": "~4.31.1",
@@ -56,7 +62,7 @@
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
-    "jest": "27.2.3",
+    "jest": "^27.2.3",
     "jest-preset-angular": "10.0.1",
     "prettier": "^2.3.1",
     "source-map-explorer": "^2.5.2",

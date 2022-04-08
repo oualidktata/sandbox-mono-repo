@@ -1,4 +1,7 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output,EventEmitter } from '@angular/core';
+import { QuantitySelectorSettings } from './models/quantity-selector.model';
+
+
 
 @Component({
   selector: 'pwc-quantity-selector',
@@ -7,25 +10,36 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuantitySelectorComponent {
-  quantity = 0;
-  @Input() increment = 0;
-  @Input() superiorEdge = 100;
-  @Input() inferiorEdge = 0;
-  hasSuperiorEdgeError = this.quantity > this.superiorEdge;
-  hasInferiorEdgeError = this.quantity < this.inferiorEdge;
+  @Input() settings: QuantitySelectorSettings = {
+    quantity: 0,
+    increment: 0,
+    superiorEdge: 100,
+    inferiorEdge: 0,
+  };
+  hasSuperiorEdgeError = this.settings.quantity > this.settings.superiorEdge;
+  hasInferiorEdgeError = this.settings.quantity < this.settings.inferiorEdge;
+@Output() quantityAddedEvent= new EventEmitter<number>();
+@Output() quantityRemovedEvent= new EventEmitter<number>();
 
   onAdd = () => {
-    if (this.quantity + this.increment > this.superiorEdge) {
-      //const message = `exceeded superior edge ${this.superiorEdge}`;
-      //console.log(message);
+    if (
+      this.settings.quantity + this.settings.increment >
+      this.settings.superiorEdge
+    ) {
+      const message = `exceeded superior edge ${this.settings.superiorEdge}`;
+      console.log(message);
       //this.error = message;
       return;
     }
-    this.quantity += this.increment;
-    console.log(`added ${this.increment} to ${this.quantity}`);
+    this.settings.quantity += this.settings.increment;
+    console.log(
+      `added ${this.settings.increment} to ${this.settings.quantity}`
+    );
+    this.quantityAddedEvent.emit(this.settings.quantity);
   };
 
   onRemove = () => {
-    this.quantity -= this.increment;
+    this.settings.quantity -= this.settings.increment;
+    this.quantityRemovedEvent.emit(this.settings.quantity);
   };
 }
