@@ -1,4 +1,4 @@
-export * from './lib/dashboard-tile/dashboard-tile.module';
+export * from './lib/dashboard-tile/dashboard-tile.component';
 export * from './lib/dashboard-tile/models/card.model';
 
 export * from './lib/crud-form-card/crud-form-card.module';

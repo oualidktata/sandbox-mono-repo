@@ -1,0 +1,34 @@
+<pwc-crud-form-card [settings]="settings" [readyToSave]="true">
+  <div readViewContent>
+    <ng-container>
+      <!-- User -->
+      <div class="item-row">
+        <div class="label">First Name:</div>
+        <div class="data">{{ user?.firstName }}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="item-row">
+        <div class="label">Last Name:</div>
+        <div class="data">{{ user?.lastName }}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="item-row">
+        <div class="label">Company:</div>
+        <div class="data">{{ user?.company }}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="item-row">
+        <div class="label">Address:</div>
+        <div class="data">{{ user?.address }}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="item-row">
+        <div class="label">Postal Code:</div>
+        <div class="data">{{ user?.postalCode }}</div>
+      </div>
+    </ng-container>
+  </div>
+  <div editViewContent>
+    <pwc-add-user [user]="user"></pwc-add-user>
+  </div>
+</pwc-crud-form-card>

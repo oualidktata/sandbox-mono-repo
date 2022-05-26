@@ -1,0 +1,31 @@
+:host{
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+  justify-content: center;
+  gap:10px 15px;
+  min-height:100%;
+  padding: 10px;
+  //grid-template-rows: auto;
+}
+@media(max-width:1400px){
+  :host{
+    display: grid;
+  grid-template-columns: auto auto;
+  gap:5px;
+  padding: 5px;
+  }
+}
+@media(max-width:1000px){
+  :host{
+    display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  gap:5px;
+  padding: 5px;
+  }
+}
+.card{
+  // outline-style: solid;
+  // outline-color: red;
+}
+

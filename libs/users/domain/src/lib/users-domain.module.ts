@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { UserService } from './infrastructure/users.service';
+import { UsersFacade } from './application/users.facade';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [],
   declarations: [],
-  providers: [UserService],
+  providers: [UsersFacade],
 })
 export class UsersDomainModule {}

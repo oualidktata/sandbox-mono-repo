@@ -1,0 +1,28 @@
+:host{
+  display:grid;
+  grid-template-columns:25% 25% 25% auto;
+ gap:15px 15px;
+ justify-items: stretch;
+ justify-content: center;
+ padding: 10px;
+
+}
+@media (max-width:1400px) {
+:host{
+  grid-template-columns: 50% 50%;
+}
+}
+@media (max-width:1000px) {
+  :host{
+    grid-template-columns: auto;
+  }
+}
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}

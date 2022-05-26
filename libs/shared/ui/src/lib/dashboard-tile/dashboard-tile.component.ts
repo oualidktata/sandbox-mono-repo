@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, NgModule, OnInit, Output } from '@angular/core';
+import { SharedMaterialModule } from '@pwc/shared/material';
 import { CardModel } from './models/card.model';
 @Component({
   selector: 'pwc-dashboard-tile',
@@ -20,3 +22,10 @@ export class DashboardTileComponent implements OnInit {
     this.text = new CardModel(1, 1, 'inital model');
   }
 }
+
+@NgModule({
+  imports: [CommonModule, SharedMaterialModule],
+  declarations: [DashboardTileComponent],
+  exports: [DashboardTileComponent],
+})
+export class DashboardTileModule {}

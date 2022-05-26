@@ -1,0 +1,49 @@
+
+<ng-container *ngIf="(vm$ | async) as vm">
+  {{vm.clientSideFilters.topFilter}}
+  <pwc-search-user class="search"></pwc-search-user>
+  <div class="toolbar-container">
+    <ng-container *ngIf="displayMode==='view'">
+      <mat-button-toggle-group  #topFilterGroup="matButtonToggleGroup" [value]="vm.clientSideFilters.topFilter" (change)="onTopFilterChange($event.value)">
+        <mat-button-toggle value="5" aria-label="show top 5"><button mat-flat-button>5</button></mat-button-toggle>
+        <mat-button-toggle value="10" aria-label="show top 10"><button mat-flat-button>10</button></mat-button-toggle>
+        <mat-button-toggle value="20" aria-label="show top 20"><button mat-flat-button>20</button></mat-button-toggle>
+        <mat-button-toggle value="50" aria-label="show top 50"><button mat-flat-button>50</button></mat-button-toggle>
+      </mat-button-toggle-group>
+    </ng-container>
+
+    <!-- <mat-slider thumbLabel [displayWith]="formatLabel" step="5" min="10" max="vm.users.length" aria-label="Show Top"></mat-slider> -->
+    <mat-button-toggle-group class="push" #displayModeGroup="matButtonToggleGroup" [value]="displayMode" (change)="onDisplayModeChange($event.value)">
+      <mat-button-toggle value="list" aria-label="display as table" ><mat-icon>view_list</mat-icon></mat-button-toggle>
+      <mat-button-toggle value="view" aria-label="display as view"><mat-icon>view_module</mat-icon></mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="list" *ngIf="vm.users; else loading">
+    <ng-container *ngIf="vm.users.length; else noItems">
+      <pwc-users-list *ngIf="displayMode==='list'" [users]="vm.users" [filter]="vm.clientSideFilters.filter" (selected)="selectUser($event)"></pwc-users-list>
+      <pwc-users-list-view *ngIf="displayMode==='view'" [users]="vm.users" [filter]="vm.clientSideFilters.filter" (selected)="selectUser($event)"></pwc-users-list-view>
+    </ng-container>
+  </div>
+  <div class="view">
+    <div *ngIf="vm.selectedUser" else noSelectedUser>
+      <!-- {{ user.firstName }}{{ user.lastName }} -->
+      <pwc-details [user]="vm.selectedUser"></pwc-details>
+      <!-- <pwc-add-user [user]="user"></pwc-add-user> -->
+    </div>
+  </div>
+<div class="debug" >
+  <mat-checkbox [(ngModel)]="debug">Show Debug</mat-checkbox>
+  <div *ngIf="vm && debug">
+displayMode={{displayMode}}
+{{vm.clientSideFilters|json}}
+{{vm.serverSideCriteria|json}}
+TOTAL:{{vm.users.length}}/{{vm.usersFromServer.length}}
+{{vm.users|json}}
+  </div>
+  </div>
+</ng-container>
+<!-- templates -->
+<ng-template #loading>loading...</ng-template>
+<ng-template #noItems>No Items!</ng-template>
+<ng-template #noSelectedUser>Please select a user to display!</ng-template>
+

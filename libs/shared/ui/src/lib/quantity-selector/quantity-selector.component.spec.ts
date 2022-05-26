@@ -8,9 +8,8 @@ describe('QuantitySelectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuantitySelectorComponent ]
-    })
-    .compileComponents();
+      declarations: [QuantitySelectorComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

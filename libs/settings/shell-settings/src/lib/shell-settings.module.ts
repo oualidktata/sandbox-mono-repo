@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ShellSettingsComponent } from './shell-settings/shell-settings.component';
-import { ManageSettingsModule } from '@pwc/settings/manage-settings';
 import { SharedMaterialModule } from '@pwc/shared/material';
+import { FeatureManageSettingsModule } from '@pwc/settings/feature-manage-settings';
 
 const routes: Routes = [
   {
@@ -11,23 +11,28 @@ const routes: Routes = [
     component: ShellSettingsComponent,
     children: [
       {
-        path: '',
+        path: 'home',
         pathMatch: 'full',
         loadChildren: () =>
-          import('@pwc/settings/manage-settings').then(
-            (m) => m.ManageSettingsModule
+          import('@pwc/settings/feature-manage-settings').then(
+            (m) => m.FeatureManageSettingsModule
           ),
       },
+      // {
+      //   path: 'dashboard',
+      //   pathMatch: 'full',
+      //   loadChildren: () =>
+      //     import('@pwc/settings/feature-dashboard').then(
+      //       (m) => m.ManageSettingsModule
+      //     ),
+      // },
+
+      { path: '', pathMatch: 'full', redirectTo: 'home' },
     ],
   },
 ];
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    ManageSettingsModule,
-    SharedMaterialModule,
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes), SharedMaterialModule,FeatureManageSettingsModule],
   declarations: [ShellSettingsComponent],
   exports: [ShellSettingsComponent],
 })

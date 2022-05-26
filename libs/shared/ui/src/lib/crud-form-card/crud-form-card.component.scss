@@ -1,1 +1,17 @@
+// // :host ::deep .mat-card-header-text{
+// //   margin:0;
+// // }
+.group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.icon-display {
+  transform: scale(1);
+}
+//TODO: Fix button alignments
+// .right{
 
+//   flex-align: end;
+// }

@@ -1,7 +1,11 @@
-import { Component, ChangeDetectionStrategy, Input, Output,EventEmitter } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { QuantitySelectorSettings } from './models/quantity-selector.model';
-
-
 
 @Component({
   selector: 'pwc-quantity-selector',
@@ -18,8 +22,8 @@ export class QuantitySelectorComponent {
   };
   hasSuperiorEdgeError = this.settings.quantity > this.settings.superiorEdge;
   hasInferiorEdgeError = this.settings.quantity < this.settings.inferiorEdge;
-@Output() quantityAddedEvent= new EventEmitter<number>();
-@Output() quantityRemovedEvent= new EventEmitter<number>();
+  @Output() quantityAddedEvent = new EventEmitter<number>();
+  @Output() quantityRemovedEvent = new EventEmitter<number>();
 
   onAdd = () => {
     if (

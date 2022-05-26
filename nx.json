@@ -33,54 +33,35 @@
       }
     ]
   },
-  "projects": {
-    "eslint-rules": {},
-    "settings-manage-settings": {
-      "tags": ["scope:settings", "type:feature"]
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "npm"
+  },
+  "generators": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
     },
-    "settings-shell-settings": {
-      "tags": ["scope:settings", "type:shell"]
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
     },
-    "shared-layout": {
-      "tags": ["scope:layout", "type:feature"]
+    "@nrwl/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
     },
-    "shared-material": {
-      "tags": ["scope:shared", "type:ui"]
-    },
-    "shared-ui": {
-      "tags": ["scope:shared", "type:ui"]
-    },
-    "shared-ui-e2e": {
-      "tags": [],
-      "implicitDependencies": ["shared-ui"]
-    },
-    "user-console": {
-      "tags": ["scope:user", "type:app"]
-    },
-    "user-console-e2e": {
-      "tags": [],
-      "implicitDependencies": ["user-console"]
-    },
-    "users-dashboard": {
-      "tags": ["scope:dashboard", "type:feature"]
-    },
-    "users-details": {
-      "tags": ["scope:users", "type:feature"]
-    },
-    "users-domain": {
-      "tags": ["scope:users", "type:domain"]
-    },
-    "users-edit-user": {
-      "tags": ["scope:users", "type:feature"]
-    },
-    "users-list": {
-      "tags": ["scope:users", "type:feature"]
-    },
-    "users-manage-users": {
-      "tags": ["scope:users", "feature:feature"]
-    },
-    "users-shell": {
-      "tags": ["scope:users", "feature:shell"]
+    "@nrwl/angular:component": {
+      "style": "scss"
     }
-  }
+  },
+  "defaultProject": "user-console"
 }

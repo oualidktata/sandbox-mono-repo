@@ -1,0 +1,45 @@
+<!-- <div
+  class="grid-container h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl"
+> -->
+<pwc-totals-tile class="grid-item" [settings]="totalTileSettings"></pwc-totals-tile>
+<pwc-forecast-tile class="grid-item" [settings]="forecastTileSettings"> </pwc-forecast-tile>
+<pwc-forecast-tile class="grid-item"
+[settings]="secondForecastTileSettings"></pwc-forecast-tile>
+<pwc-totals-tile class="grid-item" [settings]="secondTotalTileSettings"></pwc-totals-tile>
+<!--
+  <mat-grid-list cols="2" rowHeight="200px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <pwc-totals-tile [settings]="totalTileSettings"></pwc-totals-tile>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <pwc-forecast-tile [settings]="forecastTileSettings"> </pwc-forecast-tile>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <pwc-forecast-tile
+        [settings]="secondForecastTileSettings"></pwc-forecast-tile>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <pwc-totals-tile [settings]="secondTotalTileSettings"></pwc-totals-tile>
+    </mat-grid-tile>
+  </mat-grid-list> -->
+<!-- </div> -->
+<!--
+<mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+  <mat-card class="dashboard-card">
+    <mat-card-header>
+      <mat-card-title>
+        {{card.title}}
+        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item>Expand</button>
+          <button mat-menu-item>Remove</button>
+        </mat-menu>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="dashboard-card-content">
+      <div>Card Content Here</div>
+    </mat-card-content>
+  </mat-card>
+</mat-grid-tile> -->

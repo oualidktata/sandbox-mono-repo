@@ -8,9 +8,8 @@ describe('CrudFormCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CrudFormCardComponent ]
-    })
-    .compileComponents();
+      declarations: [CrudFormCardComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

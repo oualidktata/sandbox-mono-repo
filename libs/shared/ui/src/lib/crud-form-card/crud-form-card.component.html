@@ -1,21 +1,65 @@
 <mat-card>
-  <mat-progress-bar class="loader" mode ="buffer" *ngIf="isLoading"></mat-progress-bar>
-  <mat-card-header>
-  <h1>{{vm.title}}</h1>
-  <button mat-stroked-button (click)="displayContent()">{{isReadMode?'Edit':'Close'}}</button>
-  </mat-card-header>
+  <mat-progress-bar
+    class="loader"
+    mode="buffer"
+    *ngIf="isLoading"
+  ></mat-progress-bar>
+  <mat-card-title-group class="group">
+    <mat-card-title>
+      {{ vm.title }}
+    </mat-card-title>
+    <div>
+      <button mat-stroked-button (click)="displayContent()">
+        <mat-icon class="icon-display">edit</mat-icon>
+        {{ isReadMode ? 'Edit' : 'Close' }}
+      </button>
+    </div>
+  </mat-card-title-group>
   <mat-divider></mat-divider>
   <mat-card-content [class.loading]="isLoading">
     <ng-content *ngIf="isReadMode" select="[readViewContent]"></ng-content>
     <ng-content *ngIf="!isReadMode" select="[editViewContent]"></ng-content>
-
   </mat-card-content>
-  <mat-card-footer>
-    <div *ngIf="!isReadMode">
-      <button mat-stroked-button [disabled]="!canSave()" (click)="save()">Save</button>
-      <button mat-stroked-button [disabled]="canSave()"(click)="cancel()">Cancel</button>
+  <mat-card-actions>
+    <!-- Actions -->
+    <div
+      class="group flex items-center mt-10 -mx-6 sm:-mx-12 py-4 pr-4 pl-1 sm:pr-12 sm:pl-7 border-t bg-gray-50 dark:bg-transparent"
+    >
+      <!-- Delete -->
+      <button
+        mat-button
+        [color]="'warn'"
+        [matTooltip]="'Delete'"
+        (click)="delete()"
+      >
+        Delete
+      </button>
+      <!-- Cancel -->
+      <button
+        class="ml-auto"
+        mat-button
+        [matTooltip]="'Cancel'"
+        (click)="toggleEditMode(false)"
+      >
+        Cancel
+      </button>
+      <!-- Save -->
+      <button
+        class="ml-2 right"
+        mat-flat-button
+        [color]="'primary'"
+        [disabled]="invalid"
+        [matTooltip]="'Save'"
+        (click)="save()"
+      >
+        Save
+      </button>
+      <!-- <button mat-raised-button color="primary" [disabled]="!canSave()" type="submit" (click)="save()">
+        Save
+      </button> -->
     </div>
-
-  </mat-card-footer>
+  </mat-card-actions>
+  <!-- <mat-card-actions *ngIf="!isReadMode">
+    <ng-content *ngIf="!isReadMode" select="[actionContent]"></ng-content>
+  </mat-card-actions> -->
 </mat-card>
-

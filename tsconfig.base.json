@@ -15,23 +15,27 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@pwc/settings/manage-settings": [
-        "libs/settings/manage-settings/src/index.ts"
+      "@pwc/logging-viewer-lib": [
+        "libs/logging/feature-logging-viewer/src/index.ts"
       ],
-      "@pwc/settings/shell": ["libs/settings/shell/src/index.ts"],
-      "@pwc/settings/shell-settings": [
-        "libs/settings/shell-settings/src/index.ts"
+      "@pwc/settings/feature-manage-settings": [
+        "libs/settings/feature-manage-settings/src/index.ts"
       ],
+      "@pwc/settings/shell": ["libs/settings/shell-settings/src/index.ts"],
       "@pwc/shared/layout": ["libs/shared/layout/src/index.ts"],
       "@pwc/shared/material": ["libs/shared/material/src/index.ts"],
       "@pwc/shared/ui": ["libs/shared/ui/src/index.ts"],
-      "@pwc/users/dashboard": ["libs/users/dashboard/src/index.ts"],
-      "@pwc/users/details": ["libs/users/details/src/index.ts"],
       "@pwc/users/domain": ["libs/users/domain/src/index.ts"],
-      "@pwc/users/edit-user": ["libs/users/edit-user/src/index.ts"],
-      "@pwc/users/list": ["libs/users/list/src/index.ts"],
-      "@pwc/users/manage-users": ["libs/users/manage-users/src/index.ts"],
-      "@pwc/users/shell": ["libs/users/shell/src/index.ts"]
+      "@pwc/users/feature-dashboard": [
+        "libs/users/feature-dashboard/src/index.ts"
+      ],
+      "@pwc/users/feature-manage-roles": [
+        "libs/users/feature-manage-roles/src/index.ts"
+      ],
+      "@pwc/users/feature-manage-users": [
+        "libs/users/feature-manage-users/src/index.ts"
+      ],
+      "@pwc/users/shell": ["libs/users/shell-users/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

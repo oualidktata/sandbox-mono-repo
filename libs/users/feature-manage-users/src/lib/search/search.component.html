@@ -1,0 +1,24 @@
+  <ng-container *ngIf="(combinedCriteria$ |async)as criteria">
+    <mat-form-field appearance="fill" class="search-box">
+      <input
+      matInput
+      placeholder="search"
+      autocomplete="off"
+      [(ngModel)]="criteria.clientFilters.filter"
+      (keyup)="updateFilter($event)"/>
+      </mat-form-field>
+      <mat-form-field appearance="fill"  class="bu">
+          <mat-label>
+            Business Unit
+          </mat-label>
+          <mat-select *ngIf="bus$|async as bus">
+            <mat-option *ngFor="let bu of bus" [value]="bu">
+              {{bu}}
+            </mat-option>
+          </mat-select>
+      </mat-form-field>
+          <mat-checkbox [(ngModel)]="criteria.serverCriteria.active" (ngModelChange)="updateActive(criteria.serverCriteria.active)">Active</mat-checkbox>
+
+  </ng-container>
+
+

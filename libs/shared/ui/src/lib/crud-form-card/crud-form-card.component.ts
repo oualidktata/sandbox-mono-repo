@@ -5,6 +5,8 @@ import {
   ChangeDetectionStrategy,
   Input,
   ContentChild,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { CrudFormCardSettings } from './models/crud-form-card.model';
 import { EditForm } from './models/edit-form.interface';
@@ -20,9 +22,11 @@ export class CrudFormCardComponent implements OnInit {
   @ContentChild(EDITFORM_TOKEN as never, { static: false })
   editForm!: EditForm;
   @Input() readyToSave = false;
+  @Output() notifyDeletion: EventEmitter<EditForm> = new EventEmitter();
   vm: CrudFormCardSettings = { title: 'crud form title' };
   isReadMode = true;
   isLoading = false;
+  invalid = false;
   //canSave = false;
   ngOnInit(): void {
     this.isLoading = true;
@@ -44,10 +48,17 @@ export class CrudFormCardComponent implements OnInit {
   }
   save() {
     //raise save event
+
     console.log('save called!');
   }
   canSave = () => {
     console.log(`canSave=${!this.isReadMode}`);
     return !this.isReadMode;
+  };
+  toggleEditMode = (value: boolean) => {
+    this.isReadMode = value;
+  };
+  delete = () => {
+    this.editForm.delete();
   };
 }

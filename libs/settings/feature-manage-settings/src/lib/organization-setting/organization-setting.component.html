@@ -1,0 +1,49 @@
+<pwc-crud-form-card [settings]="settings" [readyToSave]="true">
+  <div editViewContent class="container">
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <pwc-quantity-selector
+        [settings]="bridgeSelectorSettings"
+        (quantityAddedEvent)="addBridges($event)"
+        (quantityRemovedEvent)="reduceBridges($event)"
+      ></pwc-quantity-selector>
+      <pwc-quantity-selector
+        [settings]="peopleSelectorSettings"
+        (quantityAddedEvent)="addPeople($event)"
+        (quantityRemovedEvent)="reducePeople($event)"
+      ></pwc-quantity-selector>
+      <mat-form-field appearance="standard">
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          maxlength="20"
+          inputmode="tel"
+          placeholder="Type your first name"
+          formControlName="firstName"
+          #firstNameInput
+        />
+        <mat-hint
+          >Min character 15: {{ firstNameInput.value.length }}/15</mat-hint
+        >
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          maxlength="20"
+          inputmode="tel"
+          placeholder="Type your last name"
+          formControlName="lastName"
+          #lastNameInput
+        />
+        <mat-hint
+          >Min character 15: {{ lastNameInput.value.length }}/15</mat-hint
+        >
+      </mat-form-field>
+      <!-- <mat-form-field>
+              <pwc-input label="Company" formControlName="company"></pwc-input>
+            </mat-form-field> -->
+    </form>
+  </div>
+
+  <div readViewContent>Read Only Content</div>
+</pwc-crud-form-card>

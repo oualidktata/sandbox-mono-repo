@@ -30,12 +30,11 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
     },
     schema: [],
     messages: {
-      uppercaseConst:'Constants should be uppercase'
+      uppercaseConst: 'Constants should be uppercase',
     },
   },
   defaultOptions: [],
   create(context) {
-    return {
-    };
+    return {};
   },
 });

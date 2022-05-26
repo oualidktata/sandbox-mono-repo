@@ -1,4 +1,3 @@
-import { InjectionToken } from "@angular/core";
+import { InjectionToken } from '@angular/core';
 
-export
- const EDITFORM_TOKEN=new InjectionToken('EditForm')
+export const EDITFORM_TOKEN = new InjectionToken('EditForm');

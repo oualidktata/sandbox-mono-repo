@@ -1,0 +1,21 @@
+// :host{
+//   display: flex;
+//   align-items: flex-start;
+// }
+:host {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items:center;
+  align-content: flex-start;
+  gap:10px
+
+}
+
+.search-box{
+  flex-grow: 1;
+  //text-align:center;
+}
+// .search{
+//   flex
+// }

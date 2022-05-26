@@ -8,18 +8,19 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [SharedMaterialModule],
-    })
+    }),
   ],
 } as Meta<CrudFormCardComponent>;
 
-const Template: Story<CrudFormCardComponent> = (args: CrudFormCardComponent) => ({
+const Template: Story<CrudFormCardComponent> = (
+  args: CrudFormCardComponent
+) => ({
   component: CrudFormCardComponent,
   props: args,
 });
 
-
 export const Primary = Template.bind({});
 Primary.args = {
-    settings:  {},
-    readyToSave:  false,
-}
+  settings: {},
+  readyToSave: false,
+};

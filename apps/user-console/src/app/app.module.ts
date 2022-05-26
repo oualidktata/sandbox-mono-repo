@@ -1,48 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UsersShellModule } from '@pwc/users/shell';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedLayoutModule } from '@pwc/shared/layout';
 import { SharedMaterialModule } from '@pwc/shared/material';
-//import { ShellSettingsComponent } from '@pwc/settings/shell-settings';
+import { HttpClientModule } from '@angular/common/http';
 const routeConfig = { enableTracing: false };
 const routes: Routes = [
   {
-    path: '',
-    //component: ClassicComponent,
-    children: [
-      //users
-      {
-        path: 'users',
-        //component: ShellComponent,
-        loadChildren: () =>
-          import('@pwc/users/shell').then((m) => m.UsersShellModule),
-      },
-      //settings
-      {
-        path: 'settings',
-        //component: ShellSettingsComponent,
-        loadChildren: () =>
-          import('@pwc/settings/shell-settings').then(
-            (m) => m.ShellSettingsModule
-          ),
-      },
-    ],
+    path: 'settings',
+    loadChildren: () =>
+      import('@pwc/settings/shell').then((m) => m.ShellSettingsModule),
   },
-  { path: '', redirectTo: 'settings', pathMatch: 'full' },
-  { path: '**', redirectTo: 'settings', pathMatch: 'full' },
+  {
+    path: 'users',
+    loadChildren: () =>
+      import('@pwc/users/shell').then((m) => m.ShellUsersModule),
+  },
+  { path: '', redirectTo: 'users', pathMatch: 'full' },
+  //{ path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    UsersShellModule,
     BrowserAnimationsModule,
     SharedLayoutModule,
     SharedMaterialModule,
     RouterModule.forRoot(routes, routeConfig),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
