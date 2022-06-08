@@ -21,7 +21,9 @@
     "postalCode": "22179",
     "createdOn": "3/17/2022",
     "active": true,
-    "shipping": "free"
+    "shipping": "free",
+    "roles":[1,2,5],
+    "bu":""
   },
   {
     "id": 3,

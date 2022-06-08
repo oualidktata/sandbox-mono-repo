@@ -3,7 +3,19 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  applicationName:"User Console",
+  version:'1.0.1',
   production: false,
+  usersSettingsDefaults:{
+    baseUsersUri:"https://my.api.mockaroo.com/users-mock.json?key=e47befb0",
+      defaultTopFilter:"10",
+      activeCriteria:"true",
+      defaultRoleFilter:"user"
+    },
+  rolesSettingsDefaults:{
+      defaultTopFilter:"5",
+      activeCriteria:"true"
+  }
 };
 
 /*

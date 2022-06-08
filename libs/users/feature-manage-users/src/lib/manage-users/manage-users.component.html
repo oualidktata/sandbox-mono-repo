@@ -1,8 +1,10 @@
 
 <ng-container *ngIf="(vm$ | async) as vm">
-  {{vm.clientSideFilters.topFilter}}
   <pwc-search-user class="search"></pwc-search-user>
   <div class="toolbar-container">
+    <ng-container>
+      <div><strong>{{vm.users.length}}</strong></div>
+    </ng-container>
     <ng-container *ngIf="displayMode==='view'">
       <mat-button-toggle-group  #topFilterGroup="matButtonToggleGroup" [value]="vm.clientSideFilters.topFilter" (change)="onTopFilterChange($event.value)">
         <mat-button-toggle value="5" aria-label="show top 5"><button mat-flat-button>5</button></mat-button-toggle>

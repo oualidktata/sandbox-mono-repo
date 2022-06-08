@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ShellUsersComponent } from './shell-users.component';
 import { SharedMaterialModule } from '@pwc/shared/material';
-import {FeatureManageUsersModule} from '@pwc/users/feature-manage-users';
+import { FeatureManageUsersModule } from '@pwc/users/feature-manage-users';
 import { FeatureManageRolesModule } from '@pwc/users/feature-manage-roles';
 import { FeatureDashboardModule } from '@pwc/users/feature-dashboard';
+import { FeatureManageSettingsModule } from '@pwc/settings/feature-manage-settings';
 const routes: Routes = [
   {
     path: '',
@@ -20,12 +21,13 @@ const routes: Routes = [
             (m) => m.FeatureManageUsersModule
           ),
       },
+
       {
-        path: 'dashboard',
+        path: 'settings',
         pathMatch: 'full',
         loadChildren: () =>
-          import('@pwc/users/feature-dashboard').then(
-            (m) => m.FeatureDashboardModule
+          import('@pwc/settings/feature-manage-settings').then(
+            (m) => m.FeatureManageSettingsModule
           ),
       },
     ],
@@ -37,7 +39,8 @@ const routes: Routes = [
     FeatureManageUsersModule,
     FeatureManageRolesModule,
     FeatureDashboardModule,
-    SharedMaterialModule
+    FeatureManageSettingsModule,
+    SharedMaterialModule,
   ],
   exports: [RouterModule],
   declarations: [ShellUsersComponent],

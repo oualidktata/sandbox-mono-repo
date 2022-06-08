@@ -9,11 +9,91 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/tools/eslint-rules"],
           "options": {
-            "jestConfig": "tools/eslint-rules/jest.config.js",
+            "jestConfig": "tools/eslint-rules/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
+    },
+    "feature-admin-email-notifications": {
+      "projectType": "library",
+      "root": "libs/settings/feature-admin-email-notifications",
+      "sourceRoot": "libs/settings/feature-admin-email-notifications/src",
+      "prefix": "settings",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/settings/feature-admin-email-notifications"
+          ],
+          "options": {
+            "jestConfig": "libs/settings/feature-admin-email-notifications/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/settings/feature-admin-email-notifications/**/*.ts",
+              "libs/settings/feature-admin-email-notifications/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:settings", "type:feature"]
+    },
+    "feature-end-user-support": {
+      "projectType": "library",
+      "root": "libs/settings/feature-end-user-support",
+      "sourceRoot": "libs/settings/feature-end-user-support/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/settings/feature-end-user-support"],
+          "options": {
+            "jestConfig": "libs/settings/feature-end-user-support/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/settings/feature-end-user-support/**/*.ts",
+              "libs/settings/feature-end-user-support/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:settings", "type:feature"]
+    },
+    "feature-manage-settings": {
+      "projectType": "library",
+      "root": "libs/settings/feature-manage-settings",
+      "sourceRoot": "libs/settings/feature-manage-settings/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/settings/feature-manage-settings"],
+          "options": {
+            "jestConfig": "libs/settings/feature-manage-settings/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/settings/feature-manage-settings/src/**/*.ts",
+              "libs/settings/feature-manage-settings/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:settings", "type:feature"]
     },
     "logging-feature-logging-viewer": {
       "projectType": "library",
@@ -41,7 +121,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/logging/feature-logging-viewer"],
           "options": {
-            "jestConfig": "libs/logging/feature-logging-viewer/jest.config.js",
+            "jestConfig": "libs/logging/feature-logging-viewer/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -57,58 +137,6 @@
       },
       "tags": ["scope:logging", "type:feature"]
     },
-    "settings-manage-settings": {
-      "projectType": "library",
-      "root": "libs/settings/manage-settings",
-      "sourceRoot": "libs/settings/manage-settings/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/settings/manage-settings"],
-          "options": {
-            "jestConfig": "libs/settings/manage-settings/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/settings/feature-manage-settings/src/**/*.ts",
-              "libs/settings/feature-manage-settings/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": ["scope:settings", "type:feature"]
-    },
-    "settings-shell-settings": {
-      "projectType": "library",
-      "root": "libs/settings/shell-settings",
-      "sourceRoot": "libs/settings/shell-settings/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/settings/shell-settings"],
-          "options": {
-            "jestConfig": "libs/settings/shell-settings/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/settings/shell-settings/src/**/*.ts",
-              "libs/settings/shell-settings/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": ["scope:settings", "type:shell"]
-    },
     "shared-layout": {
       "projectType": "library",
       "root": "libs/shared/layout",
@@ -119,7 +147,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/shared/layout"],
           "options": {
-            "jestConfig": "libs/shared/layout/jest.config.js",
+            "jestConfig": "libs/shared/layout/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -132,7 +160,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["scope:shared", "type:ui"]
     },
     "shared-material": {
       "projectType": "library",
@@ -144,7 +173,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/shared/material"],
           "options": {
-            "jestConfig": "libs/shared/material/jest.config.js",
+            "jestConfig": "libs/shared/material/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -157,7 +186,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["scope:shared", "type:ui"]
     },
     "shared-ui": {
       "projectType": "library",
@@ -169,7 +199,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/shared/ui"],
           "options": {
-            "jestConfig": "libs/shared/ui/jest.config.js",
+            "jestConfig": "libs/shared/ui/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -213,7 +243,8 @@
             }
           }
         }
-      }
+      },
+      "tags": ["scope:shared", "type:ui"]
     },
     "shared-ui-e2e": {
       "root": "apps/shared-ui-e2e",
@@ -240,6 +271,58 @@
           }
         }
       }
+    },
+    "shell-settings": {
+      "projectType": "library",
+      "root": "libs/settings/shell-settings",
+      "sourceRoot": "libs/settings/shell-settings/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/settings/shell-settings"],
+          "options": {
+            "jestConfig": "libs/settings/shell-settings/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/settings/shell-settings/src/**/*.ts",
+              "libs/settings/shell-settings/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:settings", "type:shell"]
+    },
+    "shell-users": {
+      "projectType": "library",
+      "root": "libs/users/shell-users",
+      "sourceRoot": "libs/users/shell-users/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users/shell-users"],
+          "options": {
+            "jestConfig": "libs/users/shell-users/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/shell-users/src/**/*.ts",
+              "libs/users/shell-users/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:users", "type:shell"]
     },
     "user-console": {
       "projectType": "application",
@@ -320,7 +403,27 @@
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
-              "namedChunks": true
+              "namedChunks": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/user-console/src/environments/environment.ts",
+                  "with": "apps/user-console/src/environments/environment.dev.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "development"
@@ -356,11 +459,37 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/user-console"],
           "options": {
-            "jestConfig": "apps/user-console/jest.config.js",
+            "jestConfig": "apps/user-console/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
+    },
+    "user-console-assets-configuration": {
+      "projectType": "library",
+      "root": "libs/user-console-assets/configuration",
+      "sourceRoot": "libs/user-console-assets/configuration/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/user-console-assets/configuration"],
+          "options": {
+            "jestConfig": "libs/user-console-assets/configuration/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/user-console-assets/configuration/**/*.ts",
+              "libs/user-console-assets/configuration/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:configuration", "type:library"]
     },
     "user-console-e2e": {
       "root": "apps/user-console-e2e",
@@ -389,6 +518,32 @@
         }
       }
     },
+    "users-configuration": {
+      "projectType": "library",
+      "root": "libs/users/configuration",
+      "sourceRoot": "libs/users/configuration/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users/configuration"],
+          "options": {
+            "jestConfig": "libs/users/configuration/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/configuration/**/*.ts",
+              "libs/users/configuration/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "users-dashboard": {
       "projectType": "library",
       "root": "libs/users/feature-dashboard",
@@ -399,7 +554,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/users/feature-dashboard"],
           "options": {
-            "jestConfig": "libs/users/feature-dashboard/jest.config.js",
+            "jestConfig": "libs/users/feature-dashboard/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -425,7 +580,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/users/domain"],
           "options": {
-            "jestConfig": "libs/users/domain/jest.config.js",
+            "jestConfig": "libs/users/domain/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -451,7 +606,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/users/feature-manage-roles"],
           "options": {
-            "jestConfig": "libs/users/feature-manage-roles/jest.config.js",
+            "jestConfig": "libs/users/feature-manage-roles/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -492,32 +647,6 @@
         }
       },
       "tags": ["scope:users", "type:feature"]
-    },
-    "users-shell": {
-      "projectType": "library",
-      "root": "libs/users/shell-users",
-      "sourceRoot": "libs/users/shell-users/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/users/shell-users"],
-          "options": {
-            "jestConfig": "libs/users/shell-users/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/users/shell-users/src/**/*.ts",
-              "libs/users/shell-users/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": ["scope:users", "type:shell"]
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
+import { BehaviorSubject, combineLatest, iif, Observable, of } from 'rxjs';
 import {
   concatMap,
   distinctUntilChanged,
@@ -20,6 +20,7 @@ import {
   UserSearchCriteria,
   UserClientSideFilters,
 } from '../entities/userSearchCriteria.model';
+import { InterestService } from '../infrastructure/interest.service';
 import { UserService } from '../infrastructure/users.service';
 
 @Injectable({ providedIn: 'root' })
@@ -43,10 +44,10 @@ export class UsersFacade {
         clientSideFilters: filters,
       })
     );
+    console.log(
+      `setDefaults: ${JSON.stringify(this._state.clientSideFilters)}`
+    );
   }
-loadUsers(serverSideCriteria:UserSearchCriteria,clientFilters:UserClientSideFilters){
-
-}
   //downstream streams created from upStream(state$) using selector
   serverSideCriteria$ = this.state$.pipe(
     map((state) => state.serverSideCriteria), //selector
@@ -56,26 +57,37 @@ loadUsers(serverSideCriteria:UserSearchCriteria,clientFilters:UserClientSideFilt
     map((state) => state.clientSideFilters),
     distinctUntilChanged()
   );
-  users$ = this.state$.pipe(
-    map((state) => state.users),
-    distinctUntilChanged()
-  );
-  usersFromServer$ = this.state$.pipe(
-    map((state) => state.usersFromServer),
-    distinctUntilChanged()
-  );
   selectedUser$ = this.state$.pipe(
     map((state) => state.selectedUser),
     distinctUntilChanged()
   );
   loading$ = this.state$.pipe(map((state) => state.loading));
+  filteredFromServer$=this.serverSideCriteria$
+  .pipe(
+    distinctUntilChanged(),
+    switchMap((criteria) => {
+      return this.service
+        .getUsersByCriteria(criteria)
+        //.pipe(retry(3), startWith([]));
+    }),tap(data=>console.log(`filteredFromServer.length${data.length}`))
+  );
+
+  filteredFromClient$=combineLatest([this.clientSideFilter$,this.filteredFromServer$]).pipe(
+    map(([filters,users])=>
+    {
+      return this.applyClientFilterToCachedUsers(filters,users);
+    }),tap(data=>console.log(`filteredFromClient.length${data.length}`))
+  );
+
+  interests$=this.interestService.getAll();
+
   vm$: Observable<UserState> = combineLatest([
     this.serverSideCriteria$,
     this.clientSideFilter$,
     this.selectedUser$,
-    this.usersFromServer$,
-    this.users$,
-    this.loading$,
+    this.filteredFromServer$,
+    this.filteredFromClient$,
+    this.loading$
   ]).pipe(
     map(
       ([
@@ -84,7 +96,7 @@ loadUsers(serverSideCriteria:UserSearchCriteria,clientFilters:UserClientSideFilt
         selectedUser,
         usersFromServer,
         users,
-        loading,
+        loading
       ]) => {
         return {
           serverSideCriteria,
@@ -92,37 +104,14 @@ loadUsers(serverSideCriteria:UserSearchCriteria,clientFilters:UserClientSideFilt
           selectedUser,
           usersFromServer,
           users,
-          loading,
+          loading
         };
       }
     )
   );
 
   //One facade for managing users shared by any consumer
-  constructor(private service: UserService) {
-    this.vm$.subscribe(x=>console.log(`$vm.users.length: ${x.users.length}`))
-     this.serverSideCriteria$.pipe(
-      switchMap((criteria) => {
-        return this.service
-          .getUsersByCriteria(criteria)
-          .pipe(retry(3), startWith([]));
-      })
-    ).subscribe({
-        next: (usersFromServer) => {
-          this.store.next(
-            (this._state = {
-              ...this._state,
-              usersFromServer,
-              users: this.applyClientFilterToCachedUsers(this._state.clientSideFilters,usersFromServer),
-            })
-          );
-
-          console.log(
-            `serverSideCriteria in STATE${usersFromServer.length} after Server criteria updated`
-          );
-        },
-      });
-
+  constructor(private service: UserService,private interestService:InterestService) {
 
   }//end of constructor
 
@@ -157,7 +146,7 @@ loadUsers(serverSideCriteria:UserSearchCriteria,clientFilters:UserClientSideFilt
       (this._state = {
         ...this._state,
         clientSideFilters: updatedFilter,
-        users:this.applyClientFilterToCachedUsers(updatedFilter,this._state.usersFromServer),
+        //users:this.applyClientFilterToCachedUsers(updatedFilter,this._state.usersFromServer),
       })
     );
     console.log(

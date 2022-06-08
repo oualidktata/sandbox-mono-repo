@@ -18,21 +18,14 @@ const routes: Routes = [
             (m) => m.FeatureManageSettingsModule
           ),
       },
-      // {
-      //   path: 'dashboard',
-      //   pathMatch: 'full',
-      //   loadChildren: () =>
-      //     import('@pwc/settings/feature-dashboard').then(
-      //       (m) => m.ManageSettingsModule
-      //     ),
-      // },
-
       { path: '', pathMatch: 'full', redirectTo: 'home' },
     ],
   },
 ];
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), SharedMaterialModule,FeatureManageSettingsModule],
+  imports: [CommonModule, RouterModule.forChild(routes),
+     SharedMaterialModule,
+     FeatureManageSettingsModule],
   declarations: [ShellSettingsComponent],
   exports: [ShellSettingsComponent],
 })

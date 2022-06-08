@@ -41,15 +41,11 @@ export class ManageUsersComponent implements OnInit{
     this.vm$ = this.usersFacade.vm$;
   }
   ngOnInit(): void {
-    //const criteria= {active:true} as UserSearchCriteria;
-    this.usersFacade.setDefaults({active:true},{topFilter:'5',filter:'',bu:''});
+    this.usersFacade.setDefaults({active:true,tenant:'test'},{topFilter:'5',filter:'',bu:''});
   }
-  //displayTopFilter:number;
   onTopFilterChange=(value:string)=>{
-    //this.displayTopFilter=value;
     this.usersFacade.updateTopFilter(value);
   }
-  // formatLabel=(value:number)=>{return `${value} users`;}
   deleteUser = (user: User) => this.usersFacade.deleteUser(user);
   selectUser = (user: User) => this.usersFacade.selectUser(user);
   addUser = (user: User) => this.usersFacade.addUser(user);

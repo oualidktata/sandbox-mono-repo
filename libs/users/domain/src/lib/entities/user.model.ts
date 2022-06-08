@@ -1,3 +1,5 @@
+import { Interest } from "./interest.model";
+
 export interface User {
   id?: number;
   firstName: string;
@@ -13,5 +15,9 @@ export interface User {
   active: boolean;
   tags:string[];
   roles:string[];
-  title:string;
+  projects:string[];
+  interests:number[];
+  interestNames:Interest[]
+  avatar:string;
+
 }

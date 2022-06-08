@@ -37,6 +37,7 @@ export class OrganizationSettingComponent implements EditForm {
   //quantity from selector
   bridgeSelectedQuantity = 0;
   peopleSelectedQuantity = 0;
+  invalid!: boolean;
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       firstName: [null, [Validators.required, Validators.minLength(15)]],
@@ -50,7 +51,6 @@ export class OrganizationSettingComponent implements EditForm {
   delete = () => {
     console.log();
   };
-  invalid!: boolean;
   addPeople = (quantity: number) => {
     console.log('new people after addition');
     this.peopleSelectedQuantity = quantity;
