@@ -10,3 +10,5 @@ export * from './lib/quantity-selector/quantity-selector.module';
 export * from './lib/quantity-selector/models/quantity-selector.model';
 
 export * from './lib/input/input.module';
+
+//export {TagSelectorModule} from './lib/tag-selector/tag-selector.component'

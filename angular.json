@@ -43,6 +43,32 @@
       },
       "tags": ["scope:settings", "type:feature"]
     },
+    "feature-edit-user": {
+      "projectType": "library",
+      "root": "libs/users/feature-edit-user",
+      "sourceRoot": "libs/users/feature-edit-user/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users/feature-edit-user"],
+          "options": {
+            "jestConfig": "libs/users/feature-edit-user/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/feature-edit-user/**/*.ts",
+              "libs/users/feature-edit-user/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:users", "type:feature"]
+    },
     "feature-end-user-support": {
       "projectType": "library",
       "root": "libs/settings/feature-end-user-support",
@@ -136,6 +162,32 @@
         }
       },
       "tags": ["scope:logging", "type:feature"]
+    },
+    "settings-feature-organization-settings": {
+      "projectType": "library",
+      "root": "libs/settings/feature-organization-settings",
+      "sourceRoot": "libs/settings/feature-organization-settings/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/settings/feature-organization-settings"],
+          "options": {
+            "jestConfig": "libs/settings/feature-organization-settings/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/settings/feature-organization-settings/**/*.ts",
+              "libs/settings/feature-organization-settings/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:settings", "type:feature"]
     },
     "shared-layout": {
       "projectType": "library",
@@ -405,12 +457,12 @@
               "extractLicenses": false,
               "namedChunks": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "5mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",

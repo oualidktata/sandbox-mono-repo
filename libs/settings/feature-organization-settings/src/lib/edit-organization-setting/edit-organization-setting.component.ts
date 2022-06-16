@@ -13,8 +13,8 @@ import {
 
 @Component({
   selector: 'pwc-organization-setting',
-  templateUrl: './organization-setting.component.html',
-  styleUrls: ['./organization-setting.component.scss'],
+  templateUrl: './edit-organization-setting.component.html',
+  styleUrls: ['./edit-organization-setting.component.scss'],
   providers: [
     { provide: EDITFORM_TOKEN, useExisting: OrganizationSettingComponent },
   ],
@@ -89,4 +89,4 @@ export class OrganizationSettingComponent implements EditForm {
   declarations: [OrganizationSettingComponent],
   providers: [],
 })
-export class OrganizationSettingModule { }
+export class EditOrganizationSettingModule { }

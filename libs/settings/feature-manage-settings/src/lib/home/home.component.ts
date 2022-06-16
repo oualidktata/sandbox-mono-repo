@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FeatureAdminEmailNotificationsModule } from 'libs/settings/feature-admin-email-notifications/src';
-import { FeatureEndUserSupportModule } from 'libs/settings/feature-end-user-support/src';
-import { OrganizationSettingModule } from '../organization-setting/organization-setting.component';
+import { EditAdminEmailNotificationsModule,ViewAdminEmailNotificationsModule } from '@pwc/settings/feature-admin-email-notifications';
+import { EditEndUserSupportModule,ViewEndUserSupportModule } from '@pwc/settings/feature-end-user-support';
+import { EditOrganizationSettingModule } from '@pwc/settings/feature-organization-settings';
 
 @Component({
   selector: 'pwc-settings-home',
@@ -17,9 +17,11 @@ export class HomeComponent {}
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    OrganizationSettingModule,
-    FeatureEndUserSupportModule,
-    FeatureAdminEmailNotificationsModule
+    EditOrganizationSettingModule,
+    EditAdminEmailNotificationsModule,
+    ViewAdminEmailNotificationsModule,
+    EditEndUserSupportModule,
+    ViewEndUserSupportModule
   ],
   exports: [HomeComponent],
   declarations: [HomeComponent],

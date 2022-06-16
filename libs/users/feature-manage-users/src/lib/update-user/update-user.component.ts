@@ -5,7 +5,7 @@ import {
   EventEmitter,
   NgModule,
 } from '@angular/core';
-import { UiService } from '../add-user/services/ui.service';
+import { UiService } from '../../../../feature-edit-user/src/lib/add-user/services/ui.service';
 import { Subscription } from 'rxjs';
 import { User } from '@pwc/users/domain';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

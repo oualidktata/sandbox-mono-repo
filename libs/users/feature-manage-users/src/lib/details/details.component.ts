@@ -21,7 +21,7 @@ import {
   EDITFORM_TOKEN,
 } from '@pwc/shared/ui';
 import { User } from '@pwc/users/domain';
-import { AddUserModule } from '../add-user/add-user.component';
+import { AddUserModule } from '../../../../feature-edit-user/src/lib/add-user/add-user.component';
 
 @NgModule({
   imports: [

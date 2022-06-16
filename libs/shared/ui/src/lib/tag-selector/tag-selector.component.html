@@ -1,0 +1,21 @@
+<!-- <mat-form-field appearance="fill">
+  <mat-label>{{settings.label}}</mat-label>
+  <mat-chip-list #interestList aria-label="Interests">
+    <mat-chip *ngFor="let interest of interests" (removed)="remove(interest)">
+      {{interest.name}}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input placeholder="add interest..." #interestInput formControlName="interests"
+      [matAutocomplete]="autoInterests" [matChipInputFor]="interestList"
+      [matChipInputSeparatorKeyCodes]="separatorKeyCodes">
+       <!-- (matChipInputTokenEnd)="add($event)" -->
+  </mat-chip-list>
+  <mat-autocomplete #autoInterests (optionSelected)="selected($event)">
+    <mat-option *ngFor="let interest of filteredInterests|async" [value]="interest">
+      {{interest.name}}
+    </mat-option>
+  </mat-autocomplete>
+
+</mat-form-field> -->

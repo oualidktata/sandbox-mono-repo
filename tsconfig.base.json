@@ -18,14 +18,17 @@
       "@pwc/logging-viewer-lib": [
         "libs/logging/feature-logging-viewer/src/index.ts"
       ],
-      // "@pwc/settings/feature-admin-email-notifications": [
-      //   "libs/settings/feature-admin-email-notifications/src/index.ts"
-      // ],
-      // "@pwc/settings/feature-end-user-support": [
-      //   "libs/settings/feature-end-user-support/src/index.ts"
-      // ],
+      "@pwc/settings/feature-admin-email-notifications": [
+        "libs/settings/feature-admin-email-notifications/src/index.ts"
+      ],
+      "@pwc/settings/feature-end-user-support": [
+        "libs/settings/feature-end-user-support/src/index.ts"
+      ],
       "@pwc/settings/feature-manage-settings": [
         "libs/settings/feature-manage-settings/src/index.ts"
+      ],
+      "@pwc/settings/feature-organization-settings": [
+        "libs/settings/feature-organization-settings/src/index.ts"
       ],
       "@pwc/settings/shell": ["libs/settings/shell-settings/src/index.ts"],
       "@pwc/shared/layout": ["libs/shared/layout/src/index.ts"],
@@ -38,6 +41,9 @@
       "@pwc/users/domain": ["libs/users/domain/src/index.ts"],
       "@pwc/users/feature-dashboard": [
         "libs/users/feature-dashboard/src/index.ts"
+      ],
+      "@pwc/users/feature-edit-user": [
+        "libs/users/feature-edit-user/src/index.ts"
       ],
       "@pwc/users/feature-manage-roles": [
         "libs/users/feature-manage-roles/src/index.ts"

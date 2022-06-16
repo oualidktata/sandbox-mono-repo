@@ -29,8 +29,8 @@
   <div class="view">
     <div *ngIf="vm.selectedUser" else noSelectedUser>
       <!-- {{ user.firstName }}{{ user.lastName }} -->
-      <pwc-details [user]="vm.selectedUser"></pwc-details>
-      <!-- <pwc-add-user [user]="user"></pwc-add-user> -->
+      <!-- <pwc-details [user]="vm.selectedUser"></pwc-details> -->
+      <pwc-add-user [user]="vm.selectedUser"></pwc-add-user>
     </div>
   </div>
 <div class="debug" >

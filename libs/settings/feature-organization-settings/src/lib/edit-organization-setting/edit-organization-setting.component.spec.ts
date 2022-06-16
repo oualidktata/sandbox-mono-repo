@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OrganizationSettingComponent } from './organization-setting.component';
+import { OrganizationSettingComponent } from './edit-organization-setting.component';
 
 describe('OrganizationSettingComponent', () => {
   let component: OrganizationSettingComponent;
