@@ -7,6 +7,7 @@ import {
   User,
   UsersDomainModule,
   UserClientSideFilters,
+  IInterestViewModel,
 } from '@pwc/users/domain';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,6 +20,8 @@ import { ListViewModule } from '../list-view/list-view.component';
 import { Observable } from 'rxjs';
 import { UserState } from 'libs/users/domain/src/lib/entities/user.state';
 import { AddUserModule } from '@pwc/users/feature-edit-user';
+import { ObserversModule } from '@angular/cdk/observers';
+import { Interest } from 'libs/users/domain/src/lib/entities/interest.model';
 @Component({
   selector: 'pwc-manage-users',
   templateUrl: './manage-users.component.html',
@@ -35,6 +38,7 @@ export class ManageUsersComponent implements OnInit {
   // criteria$:Observable<UserSearchCriteria>=this.usersFacade.criteria$;
   //state$=merge(this.usersFacade.criteria$,this.usersFacade.selectedUser$,this.usersFacade.users$);
   vm$!: Observable<UserState>;
+  interests$!: Observable<IInterestViewModel[]>;
   debug = false;
   displayMode: string;
   onDisplayModeChange = (value: string) => {
@@ -44,10 +48,11 @@ export class ManageUsersComponent implements OnInit {
   constructor(private usersFacade: UsersFacade) {
     this.displayMode = 'view';
     this.vm$ = this.usersFacade.vm$;
+    this.interests$ = this.usersFacade.interests$;
   }
   ngOnInit(): void {
     this.usersFacade.setDefaults(
-      { active: true, tenant: 'test' },
+      { active: true },
       { topFilter: '5', filter: '', bu: '' }
     );
   }

@@ -17,23 +17,22 @@ import {
 import { MatChipInputEvent } from '@angular/material/chips';
 import { SharedMaterialModule } from '@pwc/shared/material';
 import { UsersConfigurationModule } from '@pwc/users/configuration';
-import { User, UsersFacade } from '@pwc/users/domain';
+import { IInterestViewModel, User, UsersFacade } from '@pwc/users/domain';
 import { Interest } from 'libs/users/domain/src/lib/entities/interest.model';
 import { Observable } from 'rxjs';
 import { startWith, map, filter, first } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
-export interface IInterestViewModel {
-  id: number;
-  name: string;
-}
+
 @Component({
   selector: 'pwc-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.scss'],
 })
 export class AddUserComponent implements OnChanges {
-  @Input() user: User | null = {} as User;
+  @Input() user: User = {} as User;
+  @Input() allInterests=[] as IInterestViewModel[] ;
+
   userForm = this.fb.group({
     company: null,
     firstName: [null, Validators.required],
@@ -72,18 +71,19 @@ export class AddUserComponent implements OnChanges {
   ];
   separatorKeyCodes: number[] = [ENTER, COMMA];
   filteredInterests$: Observable<IInterestViewModel[]>;
-  interests: IInterestViewModel[] = [{ id: 3, name: 'Sports' }];
-  allInterests: IInterestViewModel[] = [
-    { id: 1, name: 'Technology' },
-    { id: 2, name: 'Science' },
-    { id: 3, name: 'Sports' },
-    { id: 4, name: 'Language' },
-  ];
+  interests: IInterestViewModel[] = [];
+  // allInterests: IInterestViewModel[] = [
+  //   { id: 1, name: 'Technology' },
+  //   { id: 2, name: 'Science' },
+  //   { id: 3, name: 'Sports' },
+  //   { id: 4, name: 'Language' },
+  // ];
   @ViewChild('interestInput')
   interestInput!: ElementRef<HTMLInputElement>;
+
   constructor(private fb: FormBuilder) {
     this.filteredInterests$ = this.interestsControl.valueChanges.pipe(
-      startWith([{ id: 3, name: 'Sports' }]),
+      //startWith([{ id: 3, name: 'Sports' }]),
       map((interest: Interest | null) =>
         interest
           ? this._filter(interest)
@@ -92,32 +92,32 @@ export class AddUserComponent implements OnChanges {
     );
   }
 
-  add(event: MatChipInputEvent) {
-    console.log(`add.Value${event.value}`);
-    const value = (event.value || '').trim();
-    console.log(`add.Value${event.value}`);
-    console.log(
-      `add.this.interestsControl.Value${this.interestsControl.value}`
-    );
-const alreadySelected=false;
-    this.filteredInterests$.pipe(
-      map(items=>items.find(item=>item.name===event.value))
-    ).subscribe(interest=> alreadySelected)
-    if (!alreadySelected) {
-      const interestToAdd = this.allInterests.find((i) => i.id === Number(value))||null;
-      this.interests.push(interestToAdd!);
-      this.interestsControl.setValue({ ...this.interestsControl.value, value });
-    }
-  }
+//   add(event: MatChipInputEvent) {
+//     console.log(`add.Value${event.value}`);
+//     const value = (event.value || '').trim();
+//     console.log(`add.Value${event.value}`);
+//     console.log(
+//       `add.this.interestsControl.Value${this.interestsControl.value}`
+//     );
+// const alreadySelected=false;
+//     this.filteredInterests$.pipe(
+//       map(items=>items.find(item=>item.name===event.value))
+//     ).subscribe(interest=> alreadySelected)
+//     if (!alreadySelected) {
+//       const interestToAdd = this.allInterests.find((i) => i.id === Number(value))||null;
+//       this.interests.push(interestToAdd!);
+//       this.interestsControl.setValue({ ...this.interestsControl.value, value });
+//     }
+//   }
   remove(interest: IInterestViewModel): void {
     console.log(`remove.interest${JSON.stringify(interest)}`);
-    this.interests = this.interests.filter((i) => i.id != interest.id);
+    this.interests = this.interests?.filter((i) => i.id != interest.id);
   }
   selected(event: MatAutocompleteSelectedEvent): void {
     const interestToAdd = event.option.value as IInterestViewModel;
     console.log(`add.selected${JSON.stringify(interestToAdd)}`);
-    if (!this.interests.find(i=>i.id===interestToAdd.id)){
-      this.interests.push(interestToAdd);
+    if (!this.interests?.find(i=>i.id===interestToAdd.id)){
+      this.interests?.push(interestToAdd);
       this.interestInput.nativeElement.value = '';
       this.interestsControl.setValue(null);
     }
@@ -146,11 +146,15 @@ const alreadySelected=false;
       shipping: this.user?.shipping,
       createdOn: this.user?.createdOn,
       active: this.user?.active,
-      interests: this.user?.interests,
+      interests: this.getInterestsModel(this.user?.interests),
     });
     console.log(
       `add-user.ngOnChanges.Interests${JSON.stringify(this.user?.interests)}`
     );
+  }
+
+  getInterestsModel(interests:number[]){
+    return this.allInterests.filter(i=>interests.includes(i.id))
   }
 
   onSubmit(): void {
