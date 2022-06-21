@@ -22,10 +22,14 @@ import {
 } from '../entities/userSearchCriteria.model';
 import { InterestService } from '../infrastructure/interest.service';
 import { UserService } from '../infrastructure/users.service';
-
+import { IInterestViewModel } from '../entities/interest-view.model';
+import { Interest } from '../entities/interest.model';
+import { state } from '@angular/animations';
 @Injectable({ providedIn: 'root' })
 export class UsersFacade {
   private _state: UserState = {
+    //whatever:true,
+    //interests:[] as Interest[],
     serverSideCriteria: {} as UserSearchCriteria,
     clientSideFilters: {} as UserClientSideFilters,
     selectedUser: {} as User,
@@ -53,6 +57,12 @@ export class UsersFacade {
     map((state) => state.serverSideCriteria), //selector
     distinctUntilChanged()
   );
+  //interests$:Observable<IInterestViewModel[]>
+  //interests$ = this.state$.pipe(map((state) => state.interests),distinctUntilChanged());
+  interests$=this.interestService.getAll().pipe(map((interests) =>
+    interests.map(interest=><IInterestViewModel>{id:interest.id,name:interest.name} )  
+  ));
+
   clientSideFilter$ = this.state$.pipe(
     map((state) => state.clientSideFilters),
     distinctUntilChanged()
@@ -79,7 +89,7 @@ export class UsersFacade {
     }),tap(data=>console.log(`filteredFromClient.length${data.length}`))
   );
 
-  //interests$=this.interestService.getAll().share();
+//interests$=this.interestService.getAll().share();
  vm$: Observable<UserState> = combineLatest([
     this.serverSideCriteria$,
     this.clientSideFilter$,
@@ -90,28 +100,30 @@ export class UsersFacade {
   ]).pipe(
     map(
       ([
+        //interests,
         serverSideCriteria,
         clientSideFilters,
         selectedUser,
         usersFromServer,
         users,
         loading
-      ]) => {
-        return {
-          serverSideCriteria,
-          clientSideFilters,
-          selectedUser,
-          usersFromServer,
-          users,
-          loading
-        };
-      }
+      ]) =>({
+        //interests,
+        serverSideCriteria,
+        clientSideFilters,
+        selectedUser,
+        usersFromServer,
+        users,
+        loading
+      })
     )
   );
 
   //One facade for managing users shared by any consumer
   constructor(private service: UserService,private interestService:InterestService) {
-
+  //   this.interestService.getAll().subscribe({next:(interests)=>
+  //   this.store.next((this._state={...this._state,interests:interests}))
+  // });
   }//end of constructor
 
   applyClientFilterToCachedUsers = (

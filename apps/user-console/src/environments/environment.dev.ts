@@ -19,7 +19,7 @@ export const environment = {
       defaultTypeFilter:"internal"
     },
     interestsSettings:{
-      baseUri:"https://my.api.mockaroo.com/roles-mock.json?key=e47befb0"
+      baseUri:"https://my.api.mockaroo.com/interests-mock.json?key=e47befb0"
     }
 };
 

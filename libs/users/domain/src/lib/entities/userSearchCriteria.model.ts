@@ -1,7 +1,6 @@
 export interface UserSearchCriteria
 {
   active:boolean;
-  tenant:string;
 }
 export interface UserClientSideFilters
 {
