@@ -4,7 +4,7 @@ import { ConfigurationService } from "@pwc/user-console-assets/configuration";
 import { UsersLibraryConfiguration } from "@pwc/users/configuration";
 import { IInterestsConfig } from "libs/users/configuration/src/lib/i-interests-config";
 import { Observable, throwError } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import { catchError, map, shareReplay, tap } from "rxjs/operators";
 import { Interest } from "../entities/interest.model";
 
 @Injectable({providedIn:'root'})
@@ -27,6 +27,7 @@ getAll(): Observable<Interest[]> {
     map((interests: Interest[]) => {
       return interests;
     }),
+    shareReplay(),
     catchError(error=>{
       return throwError(`problem getting interests from back-end-${error}!`)
     })

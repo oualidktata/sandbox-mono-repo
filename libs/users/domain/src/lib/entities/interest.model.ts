@@ -1,5 +1,5 @@
 export interface Interest{
-  id:Number;
+  id:number;
   name:string;
   description:string;
   image:string;

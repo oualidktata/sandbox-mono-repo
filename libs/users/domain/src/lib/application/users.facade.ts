@@ -79,9 +79,8 @@ export class UsersFacade {
     }),tap(data=>console.log(`filteredFromClient.length${data.length}`))
   );
 
-  interests$=this.interestService.getAll();
-
-  vm$: Observable<UserState> = combineLatest([
+  //interests$=this.interestService.getAll().share();
+ vm$: Observable<UserState> = combineLatest([
     this.serverSideCriteria$,
     this.clientSideFilter$,
     this.selectedUser$,
@@ -165,6 +164,9 @@ export class UsersFacade {
 
     selectUser(user: User) {
     //selected user in list not in service to refactor
+    this.interestService.getAll().subscribe(
+      (interests)=>
+      user.interestNames=interests.filter(i=>user.interests.includes(i.id)));
     this.store.next((this._state = { ...this._state, selectedUser: user }));
   }
   deleteUser(user: User): Observable<User> {

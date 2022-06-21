@@ -146,7 +146,7 @@ const alreadySelected=false;
       shipping: this.user?.shipping,
       createdOn: this.user?.createdOn,
       active: this.user?.active,
-      interests: this.user?.interests,
+      interests: this.user?.interestNames
     });
     console.log(
       `add-user.ngOnChanges.Interests${JSON.stringify(this.user?.interests)}`

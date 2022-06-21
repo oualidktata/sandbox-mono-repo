@@ -1,4 +1,4 @@
-<!-- {{ user | json }} -->
+{{ user | json }}
 <form [formGroup]="userForm" novalidate>
   <div class="row">
     <div class="col">
@@ -101,10 +101,11 @@
   </div>
 
   <div class="row">
+    {{userForm.get('interests')?.value|json}}
     <mat-form-field appearance="fill">
       <mat-label>Interests</mat-label>
-      <mat-chip-list #interestList aria-label="Interests">
-        <mat-chip *ngFor="let interest of interests" (removed)="remove(interest)">
+      <mat-chip-list #interestList aria-label="Interests" formControlName="interests">
+        <mat-chip *ngFor="let interest of userForm.get('interests')?.value" (removed)="remove(interest)">
           {{interest.name}}
           <button matChipRemove>
             <mat-icon>cancel</mat-icon>

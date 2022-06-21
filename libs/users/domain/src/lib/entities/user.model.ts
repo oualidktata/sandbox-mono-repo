@@ -17,7 +17,7 @@ export interface User {
   roles:string[];
   projects:string[];
   interests:number[];
-  interestNames:Interest[]
+  interestNames:InterestViewModel[]
   avatar:string;
 
 }
