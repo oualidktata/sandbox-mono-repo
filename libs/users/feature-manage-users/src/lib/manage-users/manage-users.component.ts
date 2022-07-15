@@ -17,11 +17,12 @@ import { UpdateUserModule } from '../update-user/update-user.component';
 import { UsersListModule } from '../list/list.component';
 import { SearchUsersModule } from '../search/search.component';
 import { ListViewModule } from '../list-view/list-view.component';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { UserState } from 'libs/users/domain/src/lib/entities/user.state';
-import { AddUserModule } from '@pwc/users/feature-edit-user';
+import { AddUserModule, EditUserModule } from '@pwc/users/feature-edit-user';
 import { ObserversModule } from '@angular/cdk/observers';
 import { Interest } from 'libs/users/domain/src/lib/entities/interest.model';
+import { catchError, ignoreElements } from 'rxjs/operators';
 @Component({
   selector: 'pwc-manage-users',
   templateUrl: './manage-users.component.html',
@@ -37,17 +38,23 @@ export class ManageUsersComponent implements OnInit {
   // selectedUser$: Observable<User | null> = this.usersFacade.selectedUser$;
   // criteria$:Observable<UserSearchCriteria>=this.usersFacade.criteria$;
   //state$=merge(this.usersFacade.criteria$,this.usersFacade.selectedUser$,this.usersFacade.users$);
-  vm$!: Observable<UserState>;
+  data$: Observable<UserState>=this.usersFacade.data$;
+  error$=this.data$.pipe(
+    ignoreElements(),
+    catchError((err)=>of(err))
+  );
   interests$!: Observable<IInterestViewModel[]>;
   debug = false;
   displayMode: string;
+
   onDisplayModeChange = (value: string) => {
     console.log(value);
     this.displayMode = value;
   };
   constructor(private usersFacade: UsersFacade) {
     this.displayMode = 'view';
-    this.vm$ = this.usersFacade.vm$;
+
+    //this.vm$ = this.usersFacade.vm$;
     this.interests$ = this.usersFacade.interests$;
   }
   ngOnInit(): void {
@@ -75,6 +82,7 @@ export class ManageUsersComponent implements OnInit {
     AddUserModule,
     UpdateUserModule,
     ListViewModule,
+    EditUserModule
   ],
   exports: [ManageUsersComponent],
   declarations: [ManageUsersComponent],

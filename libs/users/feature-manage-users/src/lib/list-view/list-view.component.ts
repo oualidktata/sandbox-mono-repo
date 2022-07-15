@@ -17,8 +17,8 @@ export class ListViewComponent {
     console.log(`Getter:Users from View ${this._users?.length}`)
     return this._users!;}
   set users(value:User[]){
-     this._users=value.map((item) => ({...item,tags:this._tags}));
-    console.log(`Setter:Users from View ${this._users.length}`)
+     this._users=value?.map((item) => ({...item,tags:this._tags}));
+    console.log(`Setter:Users from View ${this._users?.length}`)
   };
   @Input() filter?:string|null='';
   @Output() selected= new EventEmitter<User>();

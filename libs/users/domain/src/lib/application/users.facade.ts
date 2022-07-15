@@ -60,7 +60,7 @@ export class UsersFacade {
   //interests$:Observable<IInterestViewModel[]>
   //interests$ = this.state$.pipe(map((state) => state.interests),distinctUntilChanged());
   interests$=this.interestService.getAll().pipe(map((interests) =>
-    interests.map(interest=><IInterestViewModel>{id:interest.id,name:interest.name} )  
+    interests.map(interest=><IInterestViewModel>{id:interest.id,name:interest.name} )
   ));
 
   clientSideFilter$ = this.state$.pipe(
@@ -90,7 +90,7 @@ export class UsersFacade {
   );
 
 //interests$=this.interestService.getAll().share();
- vm$: Observable<UserState> = combineLatest([
+ data$: Observable<UserState> = combineLatest([
     this.serverSideCriteria$,
     this.clientSideFilter$,
     this.selectedUser$,
@@ -176,7 +176,7 @@ export class UsersFacade {
 
     selectUser(user: User) {
     //selected user in list not in service to refactor
-    this.interestService.getAll().subscribe(
+    this.interests$.subscribe(
       (interests)=>
       user.interestNames=interests.filter(i=>user.interests.includes(i.id)));
     this.store.next((this._state = { ...this._state, selectedUser: user }));

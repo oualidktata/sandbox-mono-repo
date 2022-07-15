@@ -1,3 +1,4 @@
+import { IInterestViewModel } from "./interest-view.model";
 import { Interest } from "./interest.model";
 
 export interface User {
@@ -17,7 +18,7 @@ export interface User {
   roles:string[];
   projects:string[];
   interests:number[];
-  interestNames:InterestViewModel[]
+  interestNames:IInterestViewModel[]
   avatar:string;
 
 }

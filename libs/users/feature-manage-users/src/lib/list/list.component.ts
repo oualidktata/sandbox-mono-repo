@@ -24,7 +24,7 @@ import { User, UsersFacade } from '@pwc/users/domain';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent implements OnChanges {
-  @Input() users?: User[] | null = [];
+  @Input() users?: User[] = [];
   @Input() filter?:string|null='';
   @Output() selected= new EventEmitter<User>();
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;

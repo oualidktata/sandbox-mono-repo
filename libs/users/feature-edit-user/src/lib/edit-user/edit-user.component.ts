@@ -1,38 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import {
-  Component,
-  ElementRef,
-  Input,
-  NgModule,
-  OnChanges,
-  ViewChild,
-} from '@angular/core';
-import {
-  FormBuilder,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { Component, OnInit, ChangeDetectionStrategy, NgModule, Input } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SharedMaterialModule } from '@pwc/shared/material';
-import { UsersConfigurationModule } from '@pwc/users/configuration';
-import { IInterestViewModel, User, UsersFacade } from '@pwc/users/domain';
-import { Interest } from 'libs/users/domain/src/lib/entities/interest.model';
-import { Observable } from 'rxjs';
-import { startWith, map, filter, first } from 'rxjs/operators';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-
+import { User } from '@pwc/users/domain';
 
 @Component({
-  selector: 'pwc-add-user',
-  templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.scss'],
+  selector: 'pwc-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddUserComponent implements OnChanges {
+export class EditUserComponent {
   @Input() user: User = {} as User;
-  @Input() allInterests=[] as IInterestViewModel[] ;
-
+  constructor(private fb: FormBuilder) {
+    
+  }
   userForm = this.fb.group({
     company: null,
     firstName: [null, Validators.required],
@@ -69,23 +51,6 @@ export class AddUserComponent implements OnChanges {
     { name: 'District Of Columbia', abbreviation: 'DC' },
     { name: 'Federated States Of Micronesia', abbreviation: 'FM' },
   ];
-  separatorKeyCodes: number[] = [ENTER, COMMA];
-  filteredInterests$: Observable<IInterestViewModel[]>;
-  interests: IInterestViewModel[] = [];
-  
-  @ViewChild('interestInput')
-  interestInput!: ElementRef<HTMLInputElement>;
-
-  constructor(private fb: FormBuilder) {
-    this.filteredInterests$ = this.interestsControl.valueChanges.pipe(
-      //startWith([{ id: 3, name: 'Sports' }]),
-      map((interest: Interest | null) =>
-        interest
-          ? this._filter(interest)
-          : (this.allInterests as IInterestViewModel[])
-      )
-    );
-  }
 
 //   add(event: MatChipInputEvent) {
 //     console.log(`add.Value${event.value}`);
@@ -104,26 +69,8 @@ export class AddUserComponent implements OnChanges {
 //       this.interestsControl.setValue({ ...this.interestsControl.value, value });
 //     }
 //   }
-  remove(interest: IInterestViewModel): void {
-    console.log(`remove.interest${JSON.stringify(interest)}`);
-    this.interests = this.interests?.filter((i) => i.id != interest.id);
-  }
-  selected(event: MatAutocompleteSelectedEvent): void {
-    const interestToAdd = event.option.value as IInterestViewModel;
-    console.log(`add.selected${JSON.stringify(interestToAdd)}`);
-    if (!this.user.interestNames?.find(i=>i.id===interestToAdd.id)){
-      this.user.interestNames?.push(interestToAdd);
-      this.interestInput.nativeElement.value = '';
-      this.interestsControl.setValue(null);
-    }
 
-  }
-  private _filter(value: Interest): IInterestViewModel[] {
-    const filterValue = value.name.toLowerCase();
-    return this.allInterests.filter((i) =>
-      i.name.toLowerCase().includes(filterValue)
-    );
-  }
+
   //TODO: leverage observables/subjects for interests
   //https://stackblitz.com/edit/how-to-save-selected-object-using-mat-chip-and-autocomplete-in
   //https://www.npmjs.com/package/ngx-chips
@@ -152,16 +99,14 @@ export class AddUserComponent implements OnChanges {
     alert('Thanks!');
   }
 }
-
 @NgModule({
-  imports: [
-    CommonModule,
+  imports: [CommonModule,
     SharedMaterialModule,
     FormsModule,
-    ReactiveFormsModule,
-  ],
-  exports: [AddUserComponent],
-  declarations: [AddUserComponent],
+    ReactiveFormsModule],
+  exports: [EditUserComponent],
+  declarations: [EditUserComponent],
   providers: [],
 })
-export class AddUserModule {}
+export class EditUserModule { }
+

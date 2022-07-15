@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { User } from '../entities/user.model';
 import { UserSearchCriteria } from '../entities/userSearchCriteria.model';
-import { catchError, filter, map, tap } from 'rxjs/operators';
+import { catchError, filter, map, tap,shareReplay } from 'rxjs/operators';
 import { ConfigurationService, IConfiguration } from '@pwc/user-console-assets/configuration';
 import { IUsersConfig, UsersLibraryConfiguration } from '@pwc/users/configuration';
 const httpOptions = {
@@ -23,22 +23,23 @@ export class UserService {
       this.config=(settings as UsersLibraryConfiguration).usersConfig;
     });
   }
-  getUsers(): Observable<User[]> {
-    //const params = new HttpParams().set('active', criteria.active);
-    const headers= new HttpHeaders().append('Accept','application/json');
-    //headers.append('authorize','token..')
-    //should use this with Real API
+//   getUsers(): Observable<User[]> {
+//     //const params = new HttpParams().set('active', criteria.active);
+//     const headers= new HttpHeaders().append('Accept','application/json');
+//     //headers.append('authorize','token..')
+//     //should use this with Real API
 
-    return this.http.get<User[]>(this.config.baseUri,{headers:headers }).pipe(
-      tap(data=>console.log(this.config.baseUri)),
-      map((users: User[]) => {
-        return users.filter((u) => u.active == true);//but let's filter manually for now
-      }),
-      catchError(error=>{
-        return throwError(`problem getting users-${error}!`)
-      })
-    );
-}
+//     return this.http.get<User[]>(this.config.baseUri,{headers:headers }).pipe(
+//       tap(data=>console.log(this.config.baseUri)),
+//       map((users: User[]) => {
+//         return users.filter((u) => u.active == true);//but let's filter manually for now
+//       }),
+//       shareReplay(),
+//       catchError(error=>{
+//         return throwError(`problem getting users-${error}!`)
+//       })
+//     );
+// }
 getUsersByCriteria(criteria: UserSearchCriteria): Observable<User[]> {
   const params = new HttpParams().set('active', criteria.active);
   const headers= new HttpHeaders().append('Accept','application/json');
@@ -50,6 +51,7 @@ getUsersByCriteria(criteria: UserSearchCriteria): Observable<User[]> {
     map((users: User[]) => {
       return users.filter((u) => u.active == criteria.active);//but let's filter manually for now
     }),
+    shareReplay(),
     catchError(error=>{
       return throwError(`problem getting users-${error}!`)
     })

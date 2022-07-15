@@ -1,12 +1,14 @@
 
-<ng-container *ngIf="(vm$ | async) as vm">
+<ng-container *ngIf="{data:data$ |async,error:error$|async} as vm">
+  
+<ng-container *ngIf="vm.data;else loading">
   <pwc-search-user class="search"></pwc-search-user>
   <div class="toolbar-container">
     <ng-container>
-      <div><strong>{{vm.users.length}}</strong></div>
+      <div><strong>{{vm.data?.users?.length}}</strong></div>
     </ng-container>
     <ng-container *ngIf="displayMode==='view'">
-      <mat-button-toggle-group  #topFilterGroup="matButtonToggleGroup" [value]="vm.clientSideFilters.topFilter" (change)="onTopFilterChange($event.value)">
+      <mat-button-toggle-group  #topFilterGroup="matButtonToggleGroup" [value]="vm.data?.clientSideFilters?.topFilter" (change)="onTopFilterChange($event.value)">
         <mat-button-toggle value="5" aria-label="show top 5"><button mat-flat-button>5</button></mat-button-toggle>
         <mat-button-toggle value="10" aria-label="show top 10"><button mat-flat-button>10</button></mat-button-toggle>
         <mat-button-toggle value="20" aria-label="show top 20"><button mat-flat-button>20</button></mat-button-toggle>
@@ -20,32 +22,41 @@
       <mat-button-toggle value="view" aria-label="display as view"><mat-icon>view_module</mat-icon></mat-button-toggle>
     </mat-button-toggle-group>
   </div>
-  <div class="list" *ngIf="vm.users; else loading">
-    <ng-container *ngIf="vm.users.length; else noItems">
-      <pwc-users-list *ngIf="displayMode==='list'" [users]="vm.users" [filter]="vm.clientSideFilters.filter" (selected)="selectUser($event)"></pwc-users-list>
-      <pwc-users-list-view *ngIf="displayMode==='view'" [users]="vm.users" [filter]="vm.clientSideFilters.filter" (selected)="selectUser($event)"></pwc-users-list-view>
+  <div class="list" *ngIf="vm.data?.users; else loading">
+    <ng-container *ngIf="vm.data?.users?.length; else noItems">
+      <pwc-users-list *ngIf="displayMode==='list'" [users]="vm.data?.users!" [filter]="vm.data?.clientSideFilters?.filter" (selected)="selectUser($event)"></pwc-users-list>
+      <pwc-users-list-view *ngIf="displayMode==='view'" [users]="vm.data?.users!" [filter]="vm.data?.clientSideFilters?.filter" (selected)="selectUser($event)"></pwc-users-list-view>
     </ng-container>
   </div>
   <div class="view">
-    <div *ngIf="vm.selectedUser && (interests$|async) as interests" else noSelectedUser>
+    <div *ngIf="vm.data?.selectedUser && (interests$|async) as interests" else noSelectedUser>
       <!-- {{ user.firstName }}{{ user.lastName }} -->
       <!-- <pwc-details [user]="vm.selectedUser"></pwc-details> -->
-      <pwc-add-user [user]="vm.selectedUser!" [allInterests]="interests"></pwc-add-user>
+      <!-- <pwc-add-user [user]="vm.selectedUser!" [allInterests]="interests"></pwc-add-user> -->
+      <pwc-edit-user [user]="vm.data?.selectedUser!"></pwc-edit-user>
     </div>
   </div>
 <div class="debug" >
   <mat-checkbox [(ngModel)]="debug">Show Debug</mat-checkbox>
   <div *ngIf="vm && debug">
 displayMode={{displayMode}}
-{{vm.clientSideFilters|json}}
-{{vm.serverSideCriteria|json}}
-TOTAL:{{vm.users.length}}/{{vm.usersFromServer.length}}
-{{vm.users|json}}
+{{vm.data?.clientSideFilters|json}}
+{{vm.data?.serverSideCriteria|json}}
+TOTAL:{{vm.data?.users?.length}}/{{vm.data?.usersFromServer?.length}}
+{{vm.data?.users|json}}
   </div>
   </div>
-</ng-container>
+  
+  </ng-container>
 <!-- templates -->
-<ng-template #loading>loading...</ng-template>
-<ng-template #noItems>No Items!</ng-template>
-<ng-template #noSelectedUser>Please select a user to display!</ng-template>
+<ng-container *ngIf="vm.error">
+  <mat-error>{{vm.error}}</mat-error>>
+</ng-container>  
+<ng-template #loading ><div *ngIf="!vm.error">
+  <ngx-skeleton-loader count="5" appearance="line" [theme]="{'height.px':100,'width.px':500}"></ngx-skeleton-loader>
+</div></ng-template>
+  <ng-template #noItems>No Items!</ng-template>
+  <ng-template #noSelectedUser>Please select a user to display!</ng-template>
+ 
+</ng-container>
 
