@@ -1,16 +1,18 @@
 name: user-console CI
+
+env:
+  node-version: 16.x
 on:
 push:
   branches:
     - main
 jobs:
-  main:
+  build:
+    name: Build
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth:0
-
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ env.node-version }}
