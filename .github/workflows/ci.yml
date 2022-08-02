@@ -14,8 +14,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        # with:
+        with:
+          fetch-depth: 0
+      
+      - uses: nrwl/nx-set-shas@v2
+      - run: npm ci
         #   node-version: ${{ env.node-version }}
           # cache: npm
       - name: build
