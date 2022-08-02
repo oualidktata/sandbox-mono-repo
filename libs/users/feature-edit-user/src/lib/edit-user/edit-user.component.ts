@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, NgModule, Input } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SharedMaterialModule } from '@pwc/shared/material';
 import { User } from '@pwc/users/domain';
 
@@ -12,8 +12,8 @@ import { User } from '@pwc/users/domain';
 })
 export class EditUserComponent {
   @Input() user: User = {} as User;
-  constructor(private fb: FormBuilder) {
-    
+  constructor(private fb: UntypedFormBuilder) {
+
   }
   userForm = this.fb.group({
     company: null,

@@ -13,8 +13,16 @@
             "allow": [],
             "depConstraints": [
               {
+                "sourceTag": "type:bff",
+                "onlyDependOnLibsWithTags": ["type:app"]
+              },
+              {
                 "sourceTag": "type:app",
-                "onlyDependOnLibsWithTags": ["type:shell"]
+                "onlyDependOnLibsWithTags": ["type:shell","type:assets"]
+              },
+              {
+                "sourceTag": "type:shell",
+                "onlyDependOnLibsWithTags": ["type:feature"]
               },
               {
                 "sourceTag": "type:feature",

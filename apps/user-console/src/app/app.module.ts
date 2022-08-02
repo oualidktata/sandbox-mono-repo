@@ -6,8 +6,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedLayoutModule } from '@pwc/shared/layout';
 import { SharedMaterialModule } from '@pwc/shared/material';
 import { HttpClientModule } from '@angular/common/http';
-import { ConfigurationModule, ConfigurationService } from '@pwc/user-console-assets/configuration';
-import { environment } from '../environments/environment.dev';
+import {
+  ConfigurationModule,
+  ConfigurationService,
+} from '@pwc/user-console-assets/configuration';
 import { AppConfig } from '../assets/config/app.config.development';
 const routeConfig = { enableTracing: false };
 const routes: Routes = [
@@ -32,8 +34,8 @@ const routes: Routes = [
     SharedLayoutModule,
     SharedMaterialModule,
     RouterModule.forRoot(routes, routeConfig),
-    ConfigurationModule.forRoot({config:new AppConfig()}),
-    HttpClientModule
+    ConfigurationModule.forRoot({ config: new AppConfig() }),
+    HttpClientModule,
   ],
   providers: [ConfigurationService],
   bootstrap: [AppComponent],

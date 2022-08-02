@@ -11,7 +11,7 @@ export class DashboardTileComponent implements OnInit {
   @Input() settings: CardModel = new CardModel(3, 3, 'default title');
   @Output() refresh = new EventEmitter<string>();
   vm: CardModel = new CardModel(1, 1, 'inital model');
-  text: CardModel = new CardModel(1, 1, 'inital model');
+  text: CardModel = new CardModel(1, 2, 'inital model');
   ngOnInit(): void {
     this.vm = new CardModel(3, 3, 'title');
     this.vm.cols = this.settings.cols ?? 1;

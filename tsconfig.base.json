@@ -18,6 +18,7 @@
       "@pwc/logging-viewer-lib": [
         "libs/logging/feature-logging-viewer/src/index.ts"
       ],
+      "@pwc/settings/domain": ["libs/settings/domain/src/index.ts"],
       "@pwc/settings/feature-admin-email-notifications": [
         "libs/settings/feature-admin-email-notifications/src/index.ts"
       ],

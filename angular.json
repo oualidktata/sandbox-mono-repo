@@ -1,6 +1,60 @@
 {
   "version": 1,
   "projects": {
+    "bff-user-console": {
+      "root": "libs/bff-user-console",
+      "projectType": "library",
+      "sourceRoot": "libs/bff-user-console",
+      "architect": {
+        "build": {
+          "builder": "@nx-dotnet/core:build",
+          "outputs": ["dist/libs/bff-user-console"],
+          "options": {
+            "configuration": "Debug",
+            "noDependencies": true
+
+          },
+          "configurations": {
+            "production": {
+              "configuration": "Release"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nx-dotnet/core:format"
+        }
+      },
+      "tags": ["scope:users","type:bff"],
+      "implicitDependencies":["user-console"]
+    },
+    "bff-user-console-test": {
+      "root": "libs/bff-user-console-test",
+      "projectType": "library",
+      "sourceRoot": "libs/bff-user-console-test",
+      "architect": {
+        "build": {
+          "builder": "@nx-dotnet/core:build",
+          "outputs": ["dist/libs/bff-user-console-test"],
+          "options": {
+            "configuration": "Debug",
+            "noDependencies": true
+          },
+          "configurations": {
+            "production": {
+              "configuration": "Release"
+            }
+          }
+        },
+        "test": {
+          "builder": "@nx-dotnet/core:test",
+          "options": {}
+        },
+        "lint": {
+          "builder": "@nx-dotnet/core:format"
+        }
+      },
+      "tags": []
+    },
     "eslint-rules": {
       "root": "tools/eslint-rules",
       "sourceRoot": "tools/eslint-rules",
@@ -13,7 +67,7 @@
             "passWithNoTests": true
           }
         }
-      }
+      },"tags":["scope:users","type:test"]
     },
     "feature-admin-email-notifications": {
       "projectType": "library",
@@ -121,7 +175,7 @@
       },
       "tags": ["scope:settings", "type:feature"]
     },
-    "logging-feature-logging-viewer": {
+    "feature-logging-viewer": {
       "projectType": "library",
       "root": "libs/logging/feature-logging-viewer",
       "sourceRoot": "libs/logging/feature-logging-viewer/src",
@@ -163,7 +217,7 @@
       },
       "tags": ["scope:logging", "type:feature"]
     },
-    "settings-feature-organization-settings": {
+    "feature-organization-settings": {
       "projectType": "library",
       "root": "libs/settings/feature-organization-settings",
       "sourceRoot": "libs/settings/feature-organization-settings/src",
@@ -477,6 +531,8 @@
                 }
               ]
             }
+
+
           },
           "defaultConfiguration": "development"
         },
@@ -487,7 +543,8 @@
               "browserTarget": "user-console:build:production"
             },
             "development": {
-              "browserTarget": "user-console:build:development"
+              "browserTarget": "user-console:build:development",
+              "open": true
             }
           },
           "defaultConfiguration": "development"
@@ -515,9 +572,10 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags":["scope:users","type:app"]
     },
-    "user-console-assets-configuration": {
+    "asset-configuration-user-console": {
       "projectType": "library",
       "root": "libs/user-console-assets/configuration",
       "sourceRoot": "libs/user-console-assets/configuration/src",
@@ -541,7 +599,7 @@
           }
         }
       },
-      "tags": ["scope:configuration", "type:library"]
+      "tags": ["scope:users", "type:assets"]
     },
     "user-console-e2e": {
       "root": "apps/user-console-e2e",
@@ -596,7 +654,7 @@
       },
       "tags": []
     },
-    "users-dashboard": {
+    "feature-users-dashboard": {
       "projectType": "library",
       "root": "libs/users/feature-dashboard",
       "sourceRoot": "libs/users/feature-dashboard/src",
@@ -622,7 +680,7 @@
       },
       "tags": ["scope:users", "type:feature"]
     },
-    "users-domain": {
+    "domain-users": {
       "projectType": "library",
       "root": "libs/users/domain",
       "sourceRoot": "libs/users/domain/src",
@@ -648,7 +706,7 @@
       },
       "tags": ["scope:users", "type:domain"]
     },
-    "users-manage-roles": {
+    "feature-manage-roles": {
       "projectType": "library",
       "root": "libs/users/feature-manage-roles",
       "sourceRoot": "libs/users/feature-manage-roles/src",
@@ -674,7 +732,7 @@
       },
       "tags": ["scope:users", "type:feature"]
     },
-    "users-manage-users": {
+    "feature-manage-users": {
       "projectType": "Library",
       "root": "libs/users/feature-manage-users",
       "sourceRoot": "libs/users/feature-manage-users/src",

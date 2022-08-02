@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SharedMaterialModule } from '@pwc/shared/material';
 import {
   CrudFormCardModule,
@@ -20,7 +20,7 @@ import {
   ],
 })
 export class OrganizationSettingComponent implements EditForm {
-  form: FormGroup;
+  form: UntypedFormGroup;
   settings = { title: 'Organization Settings' } as CrudFormCardSettings;
   bridgeSelectorSettings: QuantitySelectorSettings = {
     quantity: 0,
@@ -38,7 +38,7 @@ export class OrganizationSettingComponent implements EditForm {
   bridgeSelectedQuantity = 0;
   peopleSelectedQuantity = 0;
   invalid!: boolean;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       firstName: [null, [Validators.required, Validators.minLength(15)]],
       lastName: [null, [Validators.required, Validators.minLength(15)]],

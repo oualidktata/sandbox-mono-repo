@@ -9,7 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import {
-  FormBuilder,
+  UntypedFormBuilder,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -76,7 +76,7 @@ export class AddUserComponent implements OnChanges {
   @ViewChild('interestInput')
   interestInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.filteredInterests$ = this.interestsControl.valueChanges.pipe(
       //startWith([{ id: 3, name: 'Sports' }]),
       map((interest: Interest | null) =>
