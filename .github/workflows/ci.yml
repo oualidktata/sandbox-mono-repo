@@ -19,7 +19,7 @@ jobs:
         #   node-version: ${{ env.node-version }}
           # cache: npm
       - name: build
-        run: npx build
+        run: npx nx build
 
       # - uses: nrwl/nx-set-shas@v2
       # - run: npm ci
