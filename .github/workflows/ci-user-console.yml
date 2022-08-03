@@ -44,6 +44,7 @@ jobs:
           
       - name: Install dependencies
       - run: npm install
+      - run: npm build
       
       - uses: nrwl/nx-set-shas@v2
       #- run: npm ci
