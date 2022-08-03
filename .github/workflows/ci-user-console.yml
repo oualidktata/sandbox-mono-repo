@@ -35,6 +35,11 @@ jobs:
           path: '**/node_modules'
           key: ${{runner.os}}-modules-${{hashFiles('**/package-lock.json')}}
       
+      - name: setup .net
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{env.DOTNET_VERSION}}
+      
       #- name: Install dependencies
         #uses: npm/action-setup@2.0.1
         #with:
