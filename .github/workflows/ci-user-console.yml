@@ -44,7 +44,7 @@ jobs:
           
       #- run: npm install
       - uses: nrwl/nx-set-shas@v2
-      - run: npm ci
+      #- run: npm ci
       - run: npx nx workspace-lint
       - run: npx nx affected --target=build
       
