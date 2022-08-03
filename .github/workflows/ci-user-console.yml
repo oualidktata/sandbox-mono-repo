@@ -30,33 +30,31 @@ jobs:
         with:
           node-version: ${{matrix.node-version}}
           cache: npm
-      
+
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
           key: ${{runner.os}}-modules-${{hashFiles('**/package-lock.json')}}
-      
+
       - name: setup .net
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{env.dotnet_version}}
-      
-      #- name: Install dependencies
-        #uses: npm/action-setup@2.0.1
-        #with:
-        #  version: 6.24.3
-        #  run_install: |
-         #   - args: [--frozen-lockfile,--strict-peer-dependencies]
-          
+
       - name: Install dependencies
         run: npm install
       - run: npm build
-      
-      - uses: nrwl/nx-set-shas@v2
-      #- run: npm ci
-      - run: npx nx workspace-lint
-      - run: npx nx affected --target=build
-      
+
+  lint:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: nrwl/nx-set-shas@v2
+        #- run: npm ci
+        - name: lint library user-console
+          run: npx nx workspace-lint
+        # - run: npx nx affected --target=build
+
+
       #- run: npm format:check -- --base=remotes/origin/main
       #- run: npm run affected:e2e -- --base=remotes/origin/main
       #- run: npm format:check
