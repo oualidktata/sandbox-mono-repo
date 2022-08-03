@@ -47,12 +47,13 @@ jobs:
       - run: npm build
 
   lint:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: nrwl/nx-set-shas@v2
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: nrwl/nx-set-shas@v2
         #- run: npm ci
-        - name: lint library user-console
-          run: npx nx workspace-lint
+      - name: lint library user-console
+        run: npx nx workspace-lint
         # - run: npx nx affected --target=build
 
 
