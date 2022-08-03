@@ -39,11 +39,7 @@ jobs:
           # cache: npm
       - name: build
       - run: npx nx build
-  test-all:
-    name: test-all-dependencies
-    runs-on: ${{matrix.operating-system}}
-    steps:
-      - run: npx nx affected --target=test --ci
+
       
     
   
