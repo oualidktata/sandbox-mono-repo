@@ -33,10 +33,11 @@ jobs:
         #  path: '**/node_modules'
          # key: ${{runner.os}}-modules-${{hashFiles}}
       - uses: nrwl/nx-set-shas@v2
-      - run: npm ci
+      #- run: npm ci
         #   node-version: ${{ env.node-version }}
           # cache: npm
-      - run: npx nx build
+      - run: npx nx affected --target=build
+      - run: npx nx affected --target=test
 
   # test-all:
   #   name: test-all-dependencies
