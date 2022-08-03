@@ -17,27 +17,25 @@ on:
 
 jobs:
   build:
-    name: Build
-    # runs-on: ubuntu-latest
-    runs-on: ${{matrix.operating-system}}
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest]
-        node-version: [16.x]
+    runs-on: ubuntu-latest
+    #runs-on: ${{matrix.operating-system}}
+    #strategy:
+      #matrix:
+       # operating-system: [ubuntu-latest]
+        #node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{runner.os}}-modules-${{hashFiles}}
+      #- uses: actions/cache@v2
+       # with:
+        #  path: '**/node_modules'
+         # key: ${{runner.os}}-modules-${{hashFiles}}
       - uses: nrwl/nx-set-shas@v2
       - run: npm ci
         #   node-version: ${{ env.node-version }}
           # cache: npm
-      - name: build
       - run: npx nx build
 
   # test-all:
