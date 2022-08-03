@@ -42,8 +42,9 @@ jobs:
         #  run_install: |
          #   - args: [--frozen-lockfile,--strict-peer-dependencies]
           
-      - run: npm install
-      - run: npm run nx build
+      #- run: npm install
+      - uses: nrwl/nx-set-shas@v2
+      - run: nx build
       #- run: npm format:check -- --base=remotes/origin/main
       #- run: npm run affected:e2e -- --base=remotes/origin/main
       #- run: npm format:check
