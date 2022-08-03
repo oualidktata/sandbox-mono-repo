@@ -2,27 +2,46 @@ name: user-console CI
 
 env:
   node-version: 16.x
+  NX_BRANCH: ${{github.event.number}}
+  NX_RUN_GROUP: ${{github.run_id}}
 on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
   push:
     branches:
       - main
+    paths-ignore:
+      - '**.md'
   workflow_dispatch:
+
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: ${{matrix.operating-system}}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest,windows-latest]
+        node-version: [15.x,16.x]
 
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{runner.os}}-modules-${{hashFiles}}
       - uses: nrwl/nx-set-shas@v2
       - run: npm ci
         #   node-version: ${{ env.node-version }}
           # cache: npm
       - name: build
-        run: npx nx build
+      - run: npx nx build
+  test-all:
+    name: test-all-dependencies
+    runs-on: ${{matrix.operating-system}}
 
       # - uses: nrwl/nx-set-shas@v2
       # - run: npm ci
