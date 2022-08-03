@@ -36,13 +36,15 @@ jobs:
           key: ${{runner.os}}-modules-${{hashFiles('**/package-lock.json')}}
       
       #- name: Install dependencies
-       # uses: npm/action-setup@2.0.1
+        #uses: npm/action-setup@2.0.1
         #with:
         #  version: 6.24.3
         #  run_install: |
          #   - args: [--frozen-lockfile,--strict-peer-dependencies]
           
-      #- run: npm install
+      - name: Install dependencies
+      - run: npm install
+      
       - uses: nrwl/nx-set-shas@v2
       #- run: npm ci
       - run: npx nx workspace-lint
