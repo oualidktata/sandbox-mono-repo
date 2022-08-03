@@ -36,8 +36,8 @@ jobs:
       #- run: npm ci
         #   node-version: ${{ env.node-version }}
           # cache: npm
-      - run: npx nx affected --target=build
-      - run: npx nx affected --target=test
+      #- run: npx nx affected --target=build
+      #- run: npx nx affected --target=test
 
   # test-all:
   #   name: test-all-dependencies
