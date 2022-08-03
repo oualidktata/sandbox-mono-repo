@@ -22,7 +22,7 @@ jobs:
     runs-on: ${{matrix.operating-system}}
     strategy:
       matrix:
-        operating-system: [ubuntu-latest,windows-latest]
+        operating-system: [ubuntu-latest]
         node-version: [15.x,16.x]
 
     steps:
@@ -40,9 +40,14 @@ jobs:
       - name: build
       - run: npx nx build
 
-      
-    
-  
+  # test-all:
+  #   name: test-all-dependencies
+  #   runs-on: ${{matrix.operating-system}}
+  #   steps:
+  #     - run: npx nx affected --target=test --ci
+
+
+
       # - uses: nrwl/nx-set-shas@v2
       # - run: npm ci
       # - run: npx nx workspace-lint
