@@ -5,19 +5,15 @@ env:
   NX_BRANCH: ${{github.event.number}}
   NX_RUN_GROUP: ${{github.run_id}}
 on:
- # pull_request:
-  #  paths-ignore:
-   #   - '**.md'
-  #push:
-   # branches:
-   #   - main
-    # paths-ignore:
-      # - '**.md'
+  push:
+    branches:
+      - main
+    paths-ignore:
+     - '**.md'
   workflow_dispatch:
 
 jobs:
   build:
-    #runs-on: ubuntu-latest
     runs-on: ${{matrix.operating-system}}
     strategy:
       matrix:
@@ -28,11 +24,25 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      #- uses: actions/cache@v2
-       # with:
-        #  path: '**/node_modules'
-         # key: ${{runner.os}}-modules-${{hashFiles}}
-      - uses: nrwl/nx-set-shas@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{runner.os}}-modules-${{hashFiles}}
+      - name: setup node ${{matrix.node-version}}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{matrix.node-version}}
+      - name: Install dependencies
+        uses: pnpm/action-setup@2.0.1
+        with:
+          version: 6.24.3
+          run_install: |
+            - args: [--frozen-lockfile,--strict-peer-dependencies]
+          
+      - run: pnpm run build
+      - run: pnpm format:check -- --base=remotes/origin/main
+      - run: pnpm run affected:e2e -- --base=remotes/origin/main
+      #- uses: nrwl/nx-set-shas@v2
       #- run: npm ci
         #   node-version: ${{ env.node-version }}
           # cache: npm
