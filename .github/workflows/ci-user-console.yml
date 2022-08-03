@@ -2,6 +2,7 @@ name: user-console CI
 
 env:
   node-version: 16.x
+  dotnet_version: 6.0.x
   NX_BRANCH: ${{github.event.number}}
   NX_RUN_GROUP: ${{github.run_id}}
 on:
@@ -38,7 +39,7 @@ jobs:
       - name: setup .net
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: ${{env.DOTNET_VERSION}}
+          dotnet-version: ${{env.dotnet_version}}
       
       #- name: Install dependencies
         #uses: npm/action-setup@2.0.1
