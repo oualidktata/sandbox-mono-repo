@@ -22,19 +22,21 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Setup node ${{matrix.node-version}}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{matrix.node-version}}
-          cache: npm
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
       
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{runner.os}}-modules-${{hashFiles('**/package-lock.json')}}
+      - run: npm ci
+      #- uses: actions/cache@v2
+       # with:
+        #  path: '**/node_modules'
+         # key: ${{runner.os}}-modules-${{hashFiles('**/package-lock.json')}}
       
       - name: setup .net
         uses: actions/setup-dotnet@v1
@@ -54,7 +56,7 @@ jobs:
       
       - uses: nrwl/nx-set-shas@v2
       #- run: npm ci
-      - run: npx nx workspace-lint
+      - run: npx nx run user-console:lint
       - run: npx nx affected --target=build
       
       #- run: npm format:check -- --base=remotes/origin/main
