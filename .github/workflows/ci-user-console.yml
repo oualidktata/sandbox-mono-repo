@@ -43,8 +43,7 @@ jobs:
     name: test-all-dependencies
     runs-on: ${{matrix.operating-system}}
     steps:
-      - name: test affected
-        run: npx nx affected --target=test --ci
+      - run: npx nx affected --target=test --ci
       
     
   
