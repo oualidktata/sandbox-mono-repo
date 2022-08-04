@@ -44,7 +44,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-      - run: npm build
+      - run: npm run build
 
   lint:
     needs: build
