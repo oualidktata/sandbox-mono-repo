@@ -71,7 +71,7 @@ jobs:
       - name: Setup NX commands
         uses: nrwl/nx-set-shas@v2
 
-      #- run: npm ci
+      - run: npm ci
       - name: lint workspace
         run: npx nx workspace-lint
 
