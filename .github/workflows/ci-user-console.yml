@@ -31,34 +31,47 @@ jobs:
           node-version: ${{matrix.node-version}}
           cache: npm
 
-      - uses: actions/cache@v2
+      - name: Cache node modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
         with:
-          path: '**/node_modules'
-          key: ${{runner.os}}-modules-${{hashFiles('**/package-lock.json')}}
+          path: node_modules
+          key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('**/package-lock.json')}}
+          restore-keys: |
+            ${{runner.os}}-build-${{env.cache-name}}-
+            ${{runner.os}}-build-
+            ${{runner.os}}-
+      - name: Install dependencies
+        if:
+          steps.cache-node-modules.outputs.cache-hit!='true' # skip if cache was hit
+        run: npm ci
 
-      - run: npm ci
+      # BFF stuff now
       - name: setup .net
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{env.dotnet_version}}
 
-      - name: Install dependencies
-        run: npm install
       - run: npm run build
 
-  lint:
-    #needs: build
-    runs-on: ubuntu-latest
-    steps:
-          - uses: actions/checkout@v3
-            with:
-              fetch-depth: 0
-          - uses: nrwl/nx-set-shas@v2
-          - run: npm ci
-          - name: lint library user-console
-            run: npx nx workspace-lint
-
-
+  # lint:
+  #   #needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #         - uses: actions/checkout@v3
+  #           with:
+  #             fetch-depth: 0
+  #         - uses: nrwl/nx-set-shas@v2
+  #         - run: npm ci
+  #         - name: lint library user-console
+  #           run: npx nx workspace-lint
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: npm format:check -- --base=remotes/origin/main
+  #     -
         # - run: npx nx affected --target=build
 
 

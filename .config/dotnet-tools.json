@@ -7,6 +7,12 @@
       "commands": [
         "swagger"
       ]
+    },
+    "dotnet-format": {
+      "version": "6.4.337903",
+      "commands": [
+        "dotnet-format"
+      ]
     }
   }
 }
