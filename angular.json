@@ -440,7 +440,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "docs",
+            "outputPath": "dist/apps/user-console",
             "index": "apps/user-console/src/index.html",
             "main": "apps/user-console/src/main.ts",
             "polyfills": "apps/user-console/src/polyfills.ts",
