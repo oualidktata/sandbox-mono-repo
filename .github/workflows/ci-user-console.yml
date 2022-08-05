@@ -1,4 +1,4 @@
-name: user-console CI
+name: integration-user-console
 
 env:
   node-version: 16.x
@@ -73,10 +73,18 @@ jobs:
 
       - run: npm ci
       - name: lint workspace
+        id: workspace-lint
         run: npx nx workspace-lint
+        continue-on-error: true
 
       - name: lint user-console app
+        id: user-console-lint
         run: npx nx lint
+        continue-on-error: true
+
+      - name: Only fail when Both linting error
+        if: steps.workspace-lint.outcome!='success' && steps.user-console-lint.outcome!='success'
+        run: exit 1
   # test:
   #   runs-on: ubuntu-latest
   #   steps:

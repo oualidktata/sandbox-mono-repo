@@ -1,4 +1,4 @@
-name: user-console CI
+name: deploy-user-console
 
 env:
   node-version: 16.x
