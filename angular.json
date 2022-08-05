@@ -478,7 +478,7 @@
               ],
               "outputHashing": "all"
             },
-            "sme": {
+            "debug": {
               "fileReplacements": [
                 {
                   "replace": "apps/user-console/src/environments/environment.ts",
@@ -530,9 +530,34 @@
                   "with": "apps/user-console/src/environments/environment.dev.ts"
                 }
               ]
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/user-console/src/environments/environment.ts",
+                  "with": "apps/user-console/src/environments/environment.staging.ts"
+                }
+              ],
+              "outputHashing": "none",
+              "optimization": true,
+              "sourceMap": false,
+              "namedChunks": true,
+              "buildOptimizer": true,
+              "watch":false,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
             }
-
-
           },
           "defaultConfiguration": "development"
         },

@@ -9,7 +9,7 @@
     "build": "nx build",
     "build prod": "nx build -c=production",
     "sme": "nx build -c=sme && cd dist/apps/user-console && source-map-explorer *.js",
-    "test": "nx test",
+    "test": "nx test -c=staging",
     "test-storybook": "test-storybook",
     "prepare": "nx g @nx-dotnet/core:restore"
   },

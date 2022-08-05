@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  deploy:
     runs-on: ${{matrix.operating-system}}
     strategy:
       matrix:
@@ -22,11 +22,9 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
       - name: Setup node ${{matrix.node-version}}
         uses: actions/setup-node@v3
         with:
@@ -45,38 +43,30 @@ jobs:
             ${{runner.os}}-build-${{env.cache-name}}-
             ${{runner.os}}-build-
             ${{runner.os}}-
-
       - name: Install dependencies
         if:
           steps.cache-node-modules.outputs.cache-hit!='true' # skip if cache was hit
         run: npm ci
 
       # BFF stuff now
-      - name: Setup .net ${{env.dotnet_version}}
+      - name: setup .net
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{env.dotnet_version}}
 
-      - name: Build BFF
-        run: npm run build
+      - run: npm run build
 
-  lint:
-    #needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Setup NX commands
-        uses: nrwl/nx-set-shas@v2
-
-      #- run: npm ci
-      - name: lint workspace
-        run: npx nx workspace-lint
-
-      - name: lint user-console app
-        run: npx nx lint
+  # lint:
+  #   #needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #         - uses: actions/checkout@v3
+  #           with:
+  #             fetch-depth: 0
+  #         - uses: nrwl/nx-set-shas@v2
+  #         - run: npm ci
+  #         - name: lint library user-console
+  #           run: npx nx workspace-lint
   # test:
   #   runs-on: ubuntu-latest
   #   steps:
