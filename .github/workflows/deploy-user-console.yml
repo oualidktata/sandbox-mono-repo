@@ -43,13 +43,13 @@ jobs:
           steps.cache-node-modules.outputs.cache-hit!='true' # skip if cache was hit
         run: npm ci
 
-      # BFF stuff now
-      - name: setup .net
-        uses: actions/setup-dotnet@v1
+      - name: Deploy to staging
+        uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
-          dotnet-version: ${{env.dotnet_version}}
+          branch: main
+          folder: dist/apps/user-console
+      # BFF stuff now
 
-      - run: npm run build
 
   # lint:
   #   #needs: build
