@@ -11,8 +11,7 @@
     "sme": "nx build -c=sme && cd dist/apps/user-console && source-map-explorer *.js",
     "test": "nx test",
     "test-storybook": "test-storybook",
-    "prepare": "nx g @nx-dotnet/core:restore",
-    "build:ci": "nx build -c=development"
+    "prepare": "nx g @nx-dotnet/core:restore"
   },
   "private": true,
   "dependencies": {
