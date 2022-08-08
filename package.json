@@ -7,7 +7,7 @@
     "postinstall": "node ./decorate-angular-cli.js & ngcc --properties es2020 browser module main",
     "start": "nx run-many --target=serve --projects=user-console,bff-user-console -o",
     "build": "nx build",
-    "build-staging": "nx build -c=staging --base-href=/pwc/",
+    "build-staging": "nx build --project=user-console -c=staging --base-href=/pwc/",
     "build prod": "nx build -c=production",
     "sme": "nx build -c=sme && cd dist/apps/user-console && source-map-explorer *.js",
     "test": "nx test -c=staging",
