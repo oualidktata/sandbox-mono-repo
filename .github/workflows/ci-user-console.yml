@@ -86,15 +86,15 @@ jobs:
         if: steps.workspace-lint.outcome!='success' && steps.user-console-lint.outcome!='success'
         run: exit 1
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to staging
-        uses: JamesIves/github-pages-deploy-action@4.1.1
-        with:
-          branch: main
-          folder: public
+  #deploy:
+    #runs-on: ubuntu-latest
+    #needs: build
+    #steps:
+      #- name: Deploy to staging
+       # uses: JamesIves/github-pages-deploy-action@4.1.1
+       # with:
+       #   branch: main
+       #   folder: docs
 
 
   # test:
