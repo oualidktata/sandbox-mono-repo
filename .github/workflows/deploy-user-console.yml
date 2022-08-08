@@ -6,14 +6,14 @@ env:
   NX_BRANCH: ${{github.event.number}}
   NX_RUN_GROUP: ${{github.run_id}}
 on:
-  push: 
+  push:
     branches:
       - main
   workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: ubuntu_latest
+    runs-on:  ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
