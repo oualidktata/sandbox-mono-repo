@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ${{matrix.operating-system}}
+    runs-on: ubuntu_latest
     
     steps:
       - uses: actions/checkout@v3
