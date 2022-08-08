@@ -11,7 +11,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu_latest
-    
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -39,13 +39,13 @@ jobs:
           steps.cache-node-modules.outputs.cache-hit!='true' # skip if cache was hit
         run: |
           npm ci
-          npm build
+          npm build-staging
 
       - name: Deploy to staging
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: main
-          folder: docs
+          folder: dist/apps/user-console
       # BFF stuff now
 
 
