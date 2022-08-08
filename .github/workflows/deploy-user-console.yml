@@ -6,6 +6,9 @@ env:
   NX_BRANCH: ${{github.event.number}}
   NX_RUN_GROUP: ${{github.run_id}}
 on:
+  push: 
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
