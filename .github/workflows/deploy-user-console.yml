@@ -38,6 +38,7 @@ jobs:
             ${{runner.os}}-build-
             ${{runner.os}}-
       - name: Install dependencies
+        working-directory: ./sandbox-mono-repo
         if:
           steps.cache-node-modules.outputs.cache-hit!='true' # skip if cache was hit
         run: |
