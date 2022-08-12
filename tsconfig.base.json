@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@pwc/image-card": ["libs/shared/ui/ui-image-card/src/index.ts"],
       "@pwc/logging-viewer-lib": [
         "libs/logging/feature-logging-viewer/src/index.ts"
       ],
@@ -38,6 +39,7 @@
       "@pwc/user-console-assets/configuration": [
         "libs/user-console-assets/configuration/src/index.ts"
       ],
+      "@pwc/users/assets": ["libs/users/assets/src/index.ts"],
       "@pwc/users/configuration": ["libs/users/configuration/src/index.ts"],
       "@pwc/users/domain": ["libs/users/domain/src/index.ts"],
       "@pwc/users/feature-dashboard": [

@@ -1,6 +1,32 @@
 {
   "version": 1,
   "projects": {
+    "asset-configuration-user-console": {
+      "projectType": "library",
+      "root": "libs/user-console-assets/configuration",
+      "sourceRoot": "libs/user-console-assets/configuration/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/user-console-assets/configuration"],
+          "options": {
+            "jestConfig": "libs/user-console-assets/configuration/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/user-console-assets/configuration/**/*.ts",
+              "libs/user-console-assets/configuration/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:users", "type:assets"]
+    },
     "bff-user-console": {
       "root": "libs/bff-user-console",
       "projectType": "library",
@@ -12,7 +38,6 @@
           "options": {
             "configuration": "Debug",
             "noDependencies": true
-
           },
           "configurations": {
             "production": {
@@ -24,8 +49,8 @@
           "builder": "@nx-dotnet/core:format"
         }
       },
-      "tags": ["scope:users","type:bff"],
-      "implicitDependencies":["user-console"]
+      "tags": ["scope:users", "type:bff"],
+      "implicitDependencies": ["user-console"]
     },
     "bff-user-console-test": {
       "root": "libs/bff-user-console-test",
@@ -55,6 +80,32 @@
       },
       "tags": []
     },
+    "domain-users": {
+      "projectType": "library",
+      "root": "libs/users/domain",
+      "sourceRoot": "libs/users/domain/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users/domain"],
+          "options": {
+            "jestConfig": "libs/users/domain/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/domain/src/**/*.ts",
+              "libs/users/domain/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:users", "type:domain"]
+    },
     "eslint-rules": {
       "root": "tools/eslint-rules",
       "sourceRoot": "tools/eslint-rules",
@@ -67,7 +118,8 @@
             "passWithNoTests": true
           }
         }
-      },"tags":["scope:users","type:test"]
+      },
+      "tags": ["scope:users", "type:test"]
     },
     "feature-admin-email-notifications": {
       "projectType": "library",
@@ -149,32 +201,6 @@
       },
       "tags": ["scope:settings", "type:feature"]
     },
-    "feature-manage-settings": {
-      "projectType": "library",
-      "root": "libs/settings/feature-manage-settings",
-      "sourceRoot": "libs/settings/feature-manage-settings/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/settings/feature-manage-settings"],
-          "options": {
-            "jestConfig": "libs/settings/feature-manage-settings/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/settings/feature-manage-settings/src/**/*.ts",
-              "libs/settings/feature-manage-settings/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": ["scope:settings", "type:feature"]
-    },
     "feature-logging-viewer": {
       "projectType": "library",
       "root": "libs/logging/feature-logging-viewer",
@@ -217,6 +243,84 @@
       },
       "tags": ["scope:logging", "type:feature"]
     },
+    "feature-manage-roles": {
+      "projectType": "library",
+      "root": "libs/users/feature-manage-roles",
+      "sourceRoot": "libs/users/feature-manage-roles/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users/feature-manage-roles"],
+          "options": {
+            "jestConfig": "libs/users/feature-manage-roles/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/feature-manage-roles/src/**/*.ts",
+              "libs/users/feature-manage-roles/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:users", "type:feature"]
+    },
+    "feature-manage-settings": {
+      "projectType": "library",
+      "root": "libs/settings/feature-manage-settings",
+      "sourceRoot": "libs/settings/feature-manage-settings/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/settings/feature-manage-settings"],
+          "options": {
+            "jestConfig": "libs/settings/feature-manage-settings/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/settings/feature-manage-settings/src/**/*.ts",
+              "libs/settings/feature-manage-settings/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:settings", "type:feature"]
+    },
+    "feature-manage-users": {
+      "projectType": "Library",
+      "root": "libs/users/feature-manage-users",
+      "sourceRoot": "libs/users/feature-manage-users/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users/manage-users"],
+          "options": {
+            "jestConfig": "libs/users/manage-users/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/feature-manage-users/src/**/*.ts",
+              "libs/users/feature-manage-users/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:users", "type:feature"]
+    },
     "feature-organization-settings": {
       "projectType": "library",
       "root": "libs/settings/feature-organization-settings",
@@ -242,6 +346,32 @@
         }
       },
       "tags": ["scope:settings", "type:feature"]
+    },
+    "feature-users-dashboard": {
+      "projectType": "library",
+      "root": "libs/users/feature-dashboard",
+      "sourceRoot": "libs/users/feature-dashboard/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users/feature-dashboard"],
+          "options": {
+            "jestConfig": "libs/users/feature-dashboard/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/feature-dashboard/src/**/*.ts",
+              "libs/users/feature-dashboard/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:users", "type:feature"]
     },
     "shared-layout": {
       "projectType": "library",
@@ -430,6 +560,32 @@
       },
       "tags": ["scope:users", "type:shell"]
     },
+    "ui-image-card": {
+      "projectType": "library",
+      "root": "libs/shared/ui/ui-image-card",
+      "sourceRoot": "libs/shared/ui/ui-image-card/src",
+      "prefix": "pwc-image-card",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui/ui-image-card"],
+          "options": {
+            "jestConfig": "libs/shared/ui/ui-image-card/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/ui/ui-image-card/**/*.ts",
+              "libs/shared/ui/ui-image-card/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:shared", "type:ui"]
+    },
     "user-console": {
       "projectType": "application",
       "root": "apps/user-console",
@@ -448,7 +604,17 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "apps/user-console/src/favicon.ico",
-              "apps/user-console/src/assets"
+              "apps/user-console/src/assets",
+              {
+                "input": "libs/users/assets/src/images",
+                "glob": "**.*",
+                "output": "assets/users"
+              },
+              {
+                "input": "libs/settings/assets/images",
+                "glob": "**.*",
+                "output": "assets/settings"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -543,7 +709,7 @@
               "sourceMap": false,
               "namedChunks": true,
               "buildOptimizer": true,
-              "watch":false,
+              "watch": false,
               "vendorChunk": false,
               "budgets": [
                 {
@@ -598,33 +764,8 @@
           }
         }
       },
-      "tags":["scope:users","type:app"]
-    },
-    "asset-configuration-user-console": {
-      "projectType": "library",
-      "root": "libs/user-console-assets/configuration",
-      "sourceRoot": "libs/user-console-assets/configuration/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/user-console-assets/configuration"],
-          "options": {
-            "jestConfig": "libs/user-console-assets/configuration/jest.config.ts",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/user-console-assets/configuration/**/*.ts",
-              "libs/user-console-assets/configuration/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": ["scope:users", "type:assets"]
+      "tags": ["scope:users", "type:app"],
+      "implicitDependencies":["users-assets","users-configuration"]
     },
     "user-console-e2e": {
       "root": "apps/user-console-e2e",
@@ -653,6 +794,32 @@
         }
       }
     },
+    "users-assets": {
+      "projectType": "library",
+      "root": "libs/users/assets",
+      "sourceRoot": "libs/users/assets/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users/assets"],
+          "options": {
+            "jestConfig": "libs/users/assets/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/assets/**/*.ts",
+              "libs/users/assets/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:users", "type:assets"]
+    },
     "users-configuration": {
       "projectType": "library",
       "root": "libs/users/configuration",
@@ -677,111 +844,7 @@
           }
         }
       },
-      "tags": []
-    },
-    "feature-users-dashboard": {
-      "projectType": "library",
-      "root": "libs/users/feature-dashboard",
-      "sourceRoot": "libs/users/feature-dashboard/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/users/feature-dashboard"],
-          "options": {
-            "jestConfig": "libs/users/feature-dashboard/jest.config.ts",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/users/feature-dashboard/src/**/*.ts",
-              "libs/users/feature-dashboard/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": ["scope:users", "type:feature"]
-    },
-    "domain-users": {
-      "projectType": "library",
-      "root": "libs/users/domain",
-      "sourceRoot": "libs/users/domain/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/users/domain"],
-          "options": {
-            "jestConfig": "libs/users/domain/jest.config.ts",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/users/domain/src/**/*.ts",
-              "libs/users/domain/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": ["scope:users", "type:domain"]
-    },
-    "feature-manage-roles": {
-      "projectType": "library",
-      "root": "libs/users/feature-manage-roles",
-      "sourceRoot": "libs/users/feature-manage-roles/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/users/feature-manage-roles"],
-          "options": {
-            "jestConfig": "libs/users/feature-manage-roles/jest.config.ts",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/users/feature-manage-roles/src/**/*.ts",
-              "libs/users/feature-manage-roles/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": ["scope:users", "type:feature"]
-    },
-    "feature-manage-users": {
-      "projectType": "Library",
-      "root": "libs/users/feature-manage-users",
-      "sourceRoot": "libs/users/feature-manage-users/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/users/manage-users"],
-          "options": {
-            "jestConfig": "libs/users/manage-users/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/users/feature-manage-users/src/**/*.ts",
-              "libs/users/feature-manage-users/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": ["scope:users", "type:feature"]
+      "tags": ["scope:users", "type:configuration"]
     }
   }
 }

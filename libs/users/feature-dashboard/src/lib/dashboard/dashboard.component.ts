@@ -1,10 +1,11 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, Input, NgModule } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { CardModel } from '@pwc/shared/ui';
 import { SharedMaterialModule } from '@pwc/shared/material';
 import { ForecastTileModule } from '../forecast-tile/forecast-tile.component';
 import { TotalsTileModule } from '../totals-tile/totals-tile.component';
+import { IImageSettings, ImageCardComponent } from '@pwc/image-card';
 
 @Component({
   selector: 'pwc-dashboard',
@@ -54,6 +55,11 @@ export class DashboardComponent {
     })
   );
 
+  imageSettings: IImageSettings = {
+    source: './assets/users/default-user.png',
+    height: 200,
+    width: 400,
+  };
   constructor(private breakpointObserver: BreakpointObserver) {}
 }
 @NgModule({
@@ -62,6 +68,7 @@ export class DashboardComponent {
     ForecastTileModule,
     TotalsTileModule,
     SharedMaterialModule,
+    ImageCardComponent,
     //RouterModule.forChild(routes),
   ],
   exports: [DashboardComponent],

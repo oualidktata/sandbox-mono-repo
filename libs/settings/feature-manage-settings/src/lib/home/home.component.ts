@@ -1,8 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditAdminEmailNotificationsModule,ViewAdminEmailNotificationsModule } from '@pwc/settings/feature-admin-email-notifications';
-import { EditEndUserSupportModule,ViewEndUserSupportModule } from '@pwc/settings/feature-end-user-support';
+import { IImageSettings, ImageCardComponent } from '@pwc/image-card';
+import {
+  EditAdminEmailNotificationsModule,
+  ViewAdminEmailNotificationsModule,
+} from '@pwc/settings/feature-admin-email-notifications';
+import {
+  EditEndUserSupportModule,
+  ViewEndUserSupportModule,
+} from '@pwc/settings/feature-end-user-support';
 import { EditOrganizationSettingModule } from '@pwc/settings/feature-organization-settings';
 
 @Component({
@@ -10,7 +17,13 @@ import { EditOrganizationSettingModule } from '@pwc/settings/feature-organizatio
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {}
+export class HomeComponent {
+  imageSettings: IImageSettings = {
+    source: './assets/settings/default-setting.png',
+    height: 200,
+    width: 400,
+  };
+}
 
 @NgModule({
   imports: [
@@ -21,7 +34,8 @@ export class HomeComponent {}
     EditAdminEmailNotificationsModule,
     ViewAdminEmailNotificationsModule,
     EditEndUserSupportModule,
-    ViewEndUserSupportModule
+    ViewEndUserSupportModule,
+    ImageCardComponent,
   ],
   exports: [HomeComponent],
   declarations: [HomeComponent],
