@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "tGewxjxf+Ftpfla6bY3Z+lPVJcIZ0t97i8rh44DBFVs=",
+  "Source": "bff.user-console.admin.api",
+  "BasePath": "_content/bff.user-console.admin.api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

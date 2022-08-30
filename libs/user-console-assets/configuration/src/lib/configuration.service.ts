@@ -9,6 +9,7 @@ import { IConfiguration } from "./i-configuration";
 export class ConfigurationService{
 settings$:Subject<IConfiguration>=new ReplaySubject<IConfiguration>(1);
     constructor(@Optional() context:ConfigurationContext) {
+      console.log(`ConfigurationService.context-${JSON.stringify(context)}`)
       if (context){
         this.settings$.next(context.config);
       }

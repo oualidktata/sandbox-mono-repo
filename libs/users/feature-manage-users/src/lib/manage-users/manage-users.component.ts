@@ -18,10 +18,9 @@ import { UsersListModule } from '../list/list.component';
 import { SearchUsersModule } from '../search/search.component';
 import { ListViewModule } from '../list-view/list-view.component';
 import { Observable, of } from 'rxjs';
-import { UserState } from 'libs/users/domain/src/lib/entities/user.state';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { AddUserModule, EditUserModule } from '@pwc/users/feature-edit-user';
-import { ObserversModule } from '@angular/cdk/observers';
-import { Interest } from 'libs/users/domain/src/lib/entities/interest.model';
+import { Interest,UserState } from '@pwc/users/domain';
 import { catchError, ignoreElements } from 'rxjs/operators';
 @Component({
   selector: 'pwc-manage-users',
@@ -38,6 +37,9 @@ export class ManageUsersComponent implements OnInit {
   // selectedUser$: Observable<User | null> = this.usersFacade.selectedUser$;
   // criteria$:Observable<UserSearchCriteria>=this.usersFacade.criteria$;
   //state$=merge(this.usersFacade.criteria$,this.usersFacade.selectedUser$,this.usersFacade.users$);
+  //showNotificationSection=this.usersFacade.showNotificationSection;
+  notificationSettings={showNotificationSection:this.usersFacade.showNotificationSection};
+
   data$: Observable<UserState>=this.usersFacade.data$;
   error$=this.data$.pipe(
     ignoreElements(),

@@ -36,11 +36,13 @@
       "@pwc/shared/layout": ["libs/shared/layout/src/index.ts"],
       "@pwc/shared/material": ["libs/shared/material/src/index.ts"],
       "@pwc/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@pwc/shared/ui//notification-card": [
+        "libs/shared/ui/notification-card/src/index.ts"
+      ],
       "@pwc/user-console-assets/configuration": [
         "libs/user-console-assets/configuration/src/index.ts"
       ],
       "@pwc/users/assets": ["libs/users/assets/src/index.ts"],
-      "@pwc/users/configuration": ["libs/users/configuration/src/index.ts"],
       "@pwc/users/domain": ["libs/users/domain/src/index.ts"],
       "@pwc/users/feature-dashboard": [
         "libs/users/feature-dashboard/src/index.ts"

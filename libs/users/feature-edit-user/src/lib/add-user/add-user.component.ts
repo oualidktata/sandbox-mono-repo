@@ -16,13 +16,10 @@ import {
 } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { SharedMaterialModule } from '@pwc/shared/material';
-import { UsersConfigurationModule } from '@pwc/users/configuration';
-import { IInterestViewModel, User, UsersFacade } from '@pwc/users/domain';
-import { Interest } from 'libs/users/domain/src/lib/entities/interest.model';
+import { IInterestViewModel, Interest, User } from '@pwc/users/domain';
 import { Observable } from 'rxjs';
 import { startWith, map, filter, first } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-
 
 @Component({
   selector: 'pwc-add-user',
@@ -31,7 +28,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 })
 export class AddUserComponent implements OnChanges {
   @Input() user: User = {} as User;
-  @Input() allInterests=[] as IInterestViewModel[] ;
+  @Input() allInterests = [] as IInterestViewModel[];
 
   userForm = this.fb.group({
     company: null,
@@ -72,7 +69,7 @@ export class AddUserComponent implements OnChanges {
   separatorKeyCodes: number[] = [ENTER, COMMA];
   filteredInterests$: Observable<IInterestViewModel[]>;
   interests: IInterestViewModel[] = [];
-  
+
   @ViewChild('interestInput')
   interestInput!: ElementRef<HTMLInputElement>;
 
@@ -87,23 +84,23 @@ export class AddUserComponent implements OnChanges {
     );
   }
 
-//   add(event: MatChipInputEvent) {
-//     console.log(`add.Value${event.value}`);
-//     const value = (event.value || '').trim();
-//     console.log(`add.Value${event.value}`);
-//     console.log(
-//       `add.this.interestsControl.Value${this.interestsControl.value}`
-//     );
-// const alreadySelected=false;
-//     this.filteredInterests$.pipe(
-//       map(items=>items.find(item=>item.name===event.value))
-//     ).subscribe(interest=> alreadySelected)
-//     if (!alreadySelected) {
-//       const interestToAdd = this.allInterests.find((i) => i.id === Number(value))||null;
-//       this.interests.push(interestToAdd!);
-//       this.interestsControl.setValue({ ...this.interestsControl.value, value });
-//     }
-//   }
+  //   add(event: MatChipInputEvent) {
+  //     console.log(`add.Value${event.value}`);
+  //     const value = (event.value || '').trim();
+  //     console.log(`add.Value${event.value}`);
+  //     console.log(
+  //       `add.this.interestsControl.Value${this.interestsControl.value}`
+  //     );
+  // const alreadySelected=false;
+  //     this.filteredInterests$.pipe(
+  //       map(items=>items.find(item=>item.name===event.value))
+  //     ).subscribe(interest=> alreadySelected)
+  //     if (!alreadySelected) {
+  //       const interestToAdd = this.allInterests.find((i) => i.id === Number(value))||null;
+  //       this.interests.push(interestToAdd!);
+  //       this.interestsControl.setValue({ ...this.interestsControl.value, value });
+  //     }
+  //   }
   remove(interest: IInterestViewModel): void {
     console.log(`remove.interest${JSON.stringify(interest)}`);
     this.interests = this.interests?.filter((i) => i.id != interest.id);
@@ -111,12 +108,11 @@ export class AddUserComponent implements OnChanges {
   selected(event: MatAutocompleteSelectedEvent): void {
     const interestToAdd = event.option.value as IInterestViewModel;
     console.log(`add.selected${JSON.stringify(interestToAdd)}`);
-    if (!this.user.interestNames?.find(i=>i.id===interestToAdd.id)){
+    if (!this.user.interestNames?.find((i) => i.id === interestToAdd.id)) {
       this.user.interestNames?.push(interestToAdd);
       this.interestInput.nativeElement.value = '';
       this.interestsControl.setValue(null);
     }
-
   }
   private _filter(value: Interest): IInterestViewModel[] {
     const filterValue = value.name.toLowerCase();
@@ -144,7 +140,9 @@ export class AddUserComponent implements OnChanges {
       interests: this.user?.interestNames,
     });
     console.log(
-      `add-user.ngOnChanges.Interests${JSON.stringify(this.user?.interestNames)}`
+      `add-user.ngOnChanges.Interests${JSON.stringify(
+        this.user?.interestNames
+      )}`
     );
   }
 

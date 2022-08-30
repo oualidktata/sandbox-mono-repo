@@ -1,6 +1,8 @@
+<!-- <notification-card [settings]="{notificationSettings}"></notification-card> -->
+
 
 <ng-container *ngIf="{data:data$ |async,error:error$|async} as vm">
-  
+
 <ng-container *ngIf="vm.data;else loading">
   <pwc-search-user class="search"></pwc-search-user>
   <div class="toolbar-container">
@@ -46,17 +48,17 @@ TOTAL:{{vm.data?.users?.length}}/{{vm.data?.usersFromServer?.length}}
 {{vm.data?.users|json}}
   </div>
   </div>
-  
+
   </ng-container>
 <!-- templates -->
 <ng-container *ngIf="vm.error">
   <mat-error>{{vm.error}}</mat-error>>
-</ng-container>  
+</ng-container>
 <ng-template #loading ><div *ngIf="!vm.error">
   <ngx-skeleton-loader count="5" appearance="line" [theme]="{'height.px':100,'width.px':500}"></ngx-skeleton-loader>
 </div></ng-template>
   <ng-template #noItems>No Items!</ng-template>
   <ng-template #noSelectedUser>Please select a user to display!</ng-template>
- 
+
 </ng-container>
 

@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfigurationContext } from './configuration-context';
 
@@ -7,8 +7,12 @@ import { ConfigurationContext } from './configuration-context';
   providers: [],
 })
 export class ConfigurationModule {
-  static forRoot(context: ConfigurationContext):ModuleWithProviders<ConfigurationModule> {
-    console.log(`forRoot${context.config.applicationName}`)
+  static forRoot(
+    context: ConfigurationContext
+  ): ModuleWithProviders<ConfigurationModule> {
+    console.log(
+      `ConfigurationModule.forRoot$-${JSON.stringify(context.config)}`
+    );
     return {
       ngModule: ConfigurationModule,
       providers: [

@@ -1,85 +1,6 @@
 {
   "version": 1,
   "projects": {
-    "asset-configuration-user-console": {
-      "projectType": "library",
-      "root": "libs/user-console-assets/configuration",
-      "sourceRoot": "libs/user-console-assets/configuration/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/user-console-assets/configuration"],
-          "options": {
-            "jestConfig": "libs/user-console-assets/configuration/jest.config.ts",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/user-console-assets/configuration/**/*.ts",
-              "libs/user-console-assets/configuration/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": ["scope:users", "type:assets"]
-    },
-    "bff-user-console": {
-      "root": "libs/bff-user-console",
-      "projectType": "library",
-      "sourceRoot": "libs/bff-user-console",
-      "architect": {
-        "build": {
-          "builder": "@nx-dotnet/core:build",
-          "outputs": ["dist/libs/bff-user-console"],
-          "options": {
-            "configuration": "Debug",
-            "noDependencies": true
-          },
-          "configurations": {
-            "production": {
-              "configuration": "Release"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nx-dotnet/core:format"
-        }
-      },
-      "tags": ["scope:users", "type:bff"],
-      "implicitDependencies": ["user-console"]
-    },
-    "bff-user-console-test": {
-      "root": "libs/bff-user-console-test",
-      "projectType": "library",
-      "sourceRoot": "libs/bff-user-console-test",
-      "architect": {
-        "build": {
-          "builder": "@nx-dotnet/core:build",
-          "outputs": ["dist/libs/bff-user-console-test"],
-          "options": {
-            "configuration": "Debug",
-            "noDependencies": true
-          },
-          "configurations": {
-            "production": {
-              "configuration": "Release"
-            }
-          }
-        },
-        "test": {
-          "builder": "@nx-dotnet/core:test",
-          "options": {}
-        },
-        "lint": {
-          "builder": "@nx-dotnet/core:format"
-        }
-      },
-      "tags": []
-    },
     "domain-users": {
       "projectType": "library",
       "root": "libs/users/domain",
@@ -373,6 +294,29 @@
       },
       "tags": ["scope:users", "type:feature"]
     },
+    "settings-domain": {
+      "root": "libs/settings/domain",
+      "sourceRoot": "libs/settings/domain/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/settings/domain/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/settings/domain"],
+          "options": {
+            "jestConfig": "libs/settings/domain/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["scope:settings", "type:domain"]
+    },
     "shared-layout": {
       "projectType": "library",
       "root": "libs/shared/layout",
@@ -477,6 +421,29 @@
             "ci": {
               "quiet": true
             }
+          }
+        }
+      },
+      "tags": ["scope:shared", "type:ui"]
+    },
+    "shared-ui--notification-card": {
+      "root": "libs/shared/ui/notification-card",
+      "sourceRoot": "libs/shared/ui/notification-card/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/shared/ui/notification-card/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui/notification-card"],
+          "options": {
+            "jestConfig": "libs/shared/ui/notification-card/jest.config.ts",
+            "passWithNoTests": true
           }
         }
       },
@@ -764,8 +731,8 @@
           }
         }
       },
-      "tags": ["scope:users", "type:app"],
-      "implicitDependencies":["users-assets","users-configuration"]
+      "tags": ["type:app"],
+      "implicitDependencies": ["users-assets"]
     },
     "user-console-e2e": {
       "root": "apps/user-console-e2e",
@@ -820,17 +787,17 @@
       },
       "tags": ["scope:users", "type:assets"]
     },
-    "users-configuration": {
+    "util-configuration": {
       "projectType": "library",
-      "root": "libs/users/configuration",
-      "sourceRoot": "libs/users/configuration/src",
+      "root": "libs/user-console-assets/configuration",
+      "sourceRoot": "libs/user-console-assets/configuration/src",
       "prefix": "pwc",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/users/configuration"],
+          "outputs": ["coverage/libs/user-console-assets/configuration"],
           "options": {
-            "jestConfig": "libs/users/configuration/jest.config.ts",
+            "jestConfig": "libs/user-console-assets/configuration/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -838,13 +805,13 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/users/configuration/**/*.ts",
-              "libs/users/configuration/**/*.html"
+              "libs/user-console-assets/configuration/**/*.ts",
+              "libs/user-console-assets/configuration/**/*.html"
             ]
           }
         }
       },
-      "tags": ["scope:users", "type:configuration"]
+      "tags": ["scope:util", "type:configuration"]
     }
   }
 }

@@ -7,6 +7,7 @@
     "postinstall": "node ./decorate-angular-cli.js & ngcc --properties es2020 browser module main",
     "start": "nx run-many --target=serve --projects=user-console -o",
     "start:all": "nx run-many --target=serve --projects=user-console,bff-user-console -o",
+    "build:bff": "nx build --project=bff-user-console",
     "build": "nx build",
     "build-staging": "nx build --project=user-console -c=staging --base-href=/'https://oualidktata.github.io/sandbox-mono-repo//'",
     "build prod": "nx build -c=production",

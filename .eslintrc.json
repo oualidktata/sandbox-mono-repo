@@ -18,11 +18,11 @@
               },
               {
                 "sourceTag": "type:app",
-                "onlyDependOnLibsWithTags": ["type:shell","type:assets"]
+                "onlyDependOnLibsWithTags": ["type:shell","type:assets","type:configuration","scope:shared"]
               },
               {
                 "sourceTag": "type:shell",
-                "onlyDependOnLibsWithTags": ["type:feature"]
+                "onlyDependOnLibsWithTags": ["type:feature","scope:shared"]
               },
               {
                 "sourceTag": "type:feature",
@@ -33,8 +33,13 @@
                 "onlyDependOnLibsWithTags": ["scope:shared"]
               },
               {
+                "sourceTag": "type:configuration",
+                "onlyDependOnLibsWithTags": ["type:util","type:assets","type:configuration"]
+              },
+              // Bounded context rules: based on Scope tag most of the time!
+              {
                 "sourceTag": "scope:users",
-                "onlyDependOnLibsWithTags": ["scope:users","scope:shared"],
+                "onlyDependOnLibsWithTags": ["scope:users","scope:shared","scope:util"],
                 "notDependOnLibsWithTags": ["scope:settings"]
               },
               {

@@ -6,12 +6,20 @@ export const environment = {
   applicationName: 'User Console',
   version: '1.0.1',
   production: false,
+  // bounded contexts specific configuration
   usersSettingsDefaults: {
     //baseUri:"https://my.api.mockaroo.com/users-mock.json?key=e47befb0",
     baseUri: 'http://localhost:3001/api/users',
     defaultTopFilter: '10',
     activeCriteria: true,
     defaultRoleFilter: 'user',
+    showNotificationSection: true,
+  },
+  settingsDefaults: {
+    baseUri: '',
+    uiDefaultDashboardFilter: 'alpha',
+    uiAllowHidingSections: true,
+    uiMaxCardsPerRow: 4,
   },
   rolesSettingsDefaults: {
     baseUri: 'https://my.api.mockaroo.com/roles-mock.json?key=e47befb0',
