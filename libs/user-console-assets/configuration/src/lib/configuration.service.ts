@@ -14,4 +14,8 @@ settings$:Subject<IConfiguration>=new ReplaySubject<IConfiguration>(1);
         this.settings$.next(context.config);
       }
   }
+
+  updateSettingsConfiguration(config:ConfigurationContext){
+    this.settings$.next()
+  }
 }

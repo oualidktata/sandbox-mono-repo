@@ -20,6 +20,9 @@
         "libs/logging/feature-logging-viewer/src/index.ts"
       ],
       "@pwc/settings/domain": ["libs/settings/domain/src/index.ts"],
+      "@pwc/settings/feature-manage-ui-settings": [
+        "libs/settings/feature-manage-ui-settings/src/index.ts"
+      ],
       "@pwc/settings/feature-admin-email-notifications": [
         "libs/settings/feature-admin-email-notifications/src/index.ts"
       ],

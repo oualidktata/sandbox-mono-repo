@@ -23,7 +23,7 @@ export class AppConfig implements IConfiguration{
     activeCriteria:environment.usersSettingsDefaults.activeCriteria,
     showNotificationSection:environment.usersSettingsDefaults.showNotificationSection
   };
-  SettingsConfig:ISettingsBCConfig={
+  settingsConfig:ISettingsBCConfig={
     isProduction:environment.production,
     applicationName:environment.applicationName,
     version:environment.version,

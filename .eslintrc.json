@@ -40,12 +40,12 @@
               {
                 "sourceTag": "scope:users",
                 "onlyDependOnLibsWithTags": ["scope:users","scope:shared","scope:util"],
-                "notDependOnLibsWithTags": ["scope:settings"]
+                //"notDependOnLibsWithTags": ["scope:settings"]
               },
               {
                 "sourceTag": "scope:settings",
-                "onlyDependOnLibsWithTags": ["scope:settings","scope:shared"],
-                "notDependOnLibsWithTags": ["scope:users"]
+                "onlyDependOnLibsWithTags": ["scope:settings","scope:shared","scope:util"],
+                //"notDependOnLibsWithTags": ["scope:users"]
               }
             ]
           }
