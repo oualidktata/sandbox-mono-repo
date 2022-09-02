@@ -1,6 +1,139 @@
 {
   "version": 1,
   "projects": {
+    "customer-portal": {
+      "projectType": "application",
+      "root": "apps/customer-portal",
+      "sourceRoot": "apps/customer-portal/src",
+      "prefix": "pwc",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:webpack-browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/customer-portal",
+            "index": "apps/customer-portal/src/index.html",
+            "main": "apps/customer-portal/src/main.ts",
+            "polyfills": "apps/customer-portal/src/polyfills.ts",
+            "tsConfig": "apps/customer-portal/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/customer-portal/src/favicon.ico",
+              "apps/customer-portal/src/assets"
+            ],
+            "styles": ["apps/customer-portal/src/styles.scss"],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "apps/customer-portal/webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/customer-portal/src/environments/environment.ts",
+                  "with": "apps/customer-portal/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "customWebpackConfig": {
+                "path": "apps/customer-portal/webpack.prod.config.js"
+              }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@nrwl/angular:module-federation-dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "customer-portal:build:production"
+            },
+            "development": {
+              "browserTarget": "customer-portal:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 5100,
+            "publicHost": "http://localhost:5100"
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "customer-portal:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/customer-portal/**/*.ts",
+              "apps/customer-portal/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/customer-portal"],
+          "options": {
+            "jestConfig": "apps/customer-portal/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["scope:customer-portal","type:host-app"],
+      "implicitDependencies":["users-mfe"]
+    },
+    "customer-portal-e2e": {
+      "root": "apps/customer-portal-e2e",
+      "sourceRoot": "apps/customer-portal-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/customer-portal-e2e/cypress.json",
+            "devServerTarget": "customer-portal:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "customer-portal:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/customer-portal-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["customer-portal"]
+    },
     "domain-users": {
       "projectType": "library",
       "root": "libs/users/domain",
@@ -216,6 +349,32 @@
       },
       "tags": ["scope:settings", "type:feature"]
     },
+    "feature-manage-ui-settings": {
+      "projectType": "library",
+      "root": "libs/settings/feature-manage-ui-settings",
+      "sourceRoot": "libs/settings/feature-manage-ui-settings/src",
+      "prefix": "pwc",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/settings/feature-manage-ui-settings"],
+          "options": {
+            "jestConfig": "libs/settings/feature-manage-ui-settings/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/settings/feature-manage-ui-settings/**/*.ts",
+              "libs/settings/feature-manage-ui-settings/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["scope:settings", "type:feature"]
+    },
     "feature-manage-users": {
       "projectType": "Library",
       "root": "libs/users/feature-manage-users",
@@ -316,32 +475,6 @@
         }
       },
       "tags": ["scope:settings", "type:domain"]
-    },
-    "feature-manage-ui-settings": {
-      "projectType": "library",
-      "root": "libs/settings/feature-manage-ui-settings",
-      "sourceRoot": "libs/settings/feature-manage-ui-settings/src",
-      "prefix": "pwc",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/settings/feature-manage-ui-settings"],
-          "options": {
-            "jestConfig": "libs/settings/feature-manage-ui-settings/jest.config.ts",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/settings/feature-manage-ui-settings/**/*.ts",
-              "libs/settings/feature-manage-ui-settings/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": ["scope:settings", "type:feature"]
     },
     "shared-layout": {
       "projectType": "library",
@@ -812,6 +945,154 @@
         }
       },
       "tags": ["scope:users", "type:assets"]
+    },
+    "mfe-users": {
+      "projectType": "application",
+      "root": "apps/users-mfe",
+      "sourceRoot": "apps/users-mfe/src",
+      "prefix": "mfe",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:webpack-browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/users-mfe",
+            "index": "apps/users-mfe/src/index.html",
+            "main": "apps/users-mfe/src/main.ts",
+            "polyfills": "apps/users-mfe/src/polyfills.ts",
+            "tsConfig": "apps/users-mfe/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/users-mfe/src/favicon.ico",
+              "apps/users-mfe/src/assets"
+            ],
+            "styles": ["apps/users-mfe/src/styles.scss"],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "apps/users-mfe/webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/users-mfe/src/environments/environment.ts",
+                  "with": "apps/users-mfe/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "customWebpackConfig": {
+                "path": "apps/users-mfe/webpack.prod.config.js"
+              }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@nrwl/angular:webpack-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "users-mfe:build:production"
+            },
+            "development": {
+              "browserTarget": "users-mfe:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 6100,
+            "publicHost": "http://localhost:6100"
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "users-mfe:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/users-mfe/**/*.ts",
+              "apps/users-mfe/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/users-mfe"],
+          "options": {
+            "jestConfig": "apps/users-mfe/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "serve-static": {
+          "builder": "@nrwl/angular:file-server",
+          "defaultConfiguration": "development",
+          "options": {
+            "buildTarget": "users-mfe:build",
+            "port": 6100
+          },
+          "configurations": {
+            "development": {
+              "buildTarget": "users-mfe:build:development"
+            },
+            "production": {
+              "buildTarget": "users-mfe:build:production"
+            }
+          }
+        }
+      },
+      "tags": ["scope:customer-portal", "type:mfe"]
+    },
+    "users-mfe-e2e": {
+      "root": "apps/users-mfe-e2e",
+      "sourceRoot": "apps/users-mfe-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/users-mfe-e2e/cypress.json",
+            "devServerTarget": "users-mfe:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "users-mfe:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/users-mfe-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": ["scope:users","type:mfe"],
+      "implicitDependencies": ["users-mfe"]
     },
     "util-configuration": {
       "projectType": "library",
